@@ -1,4 +1,5 @@
 # ignore latex junk
 *.aux
 *.log
+*.synctex.gz
 
