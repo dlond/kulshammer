@@ -1,0 +1,471 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% K\"ulshammer's question, etc.
+%
+% authors: Daniel Lond, Ben Martin
+% include:
+% amslatex-file
+%
+% Version: BM 08.07.13
+%               BM 27.02.15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{amsart}
+\usepackage{amscd, amsfonts, amssymb}
+\usepackage{fullpage}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\usepackage{enumerate}
+%\usepackage[colorlinks=true]{hyperref}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Math macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% fancy letters
+
+\newcommand\bb{\mathfrak b}
+\newcommand\cc{\mathfrak c}
+\renewcommand\gg{\mathfrak g}
+\newcommand\hh{\mathfrak h}
+\newcommand\kk{\mathfrak k}
+\newcommand\mm{\mathfrak m}
+\newcommand\nn{\mathfrak n}
+\newcommand\pp{\mathfrak p}
+\newcommand\rr{\mathfrak r}
+\newcommand\zz{\mathfrak z}
+
+\newcommand{\inprod}[1]{\langle #1\rangle}
+
+%%%%%%%% general...
+\newcommand\inverse{{^{-1}}}
+\renewcommand{\check}{^{\vee}}
+
+
+\newcommand\ra{\rightarrow}
+\newcommand\lra{\longrightarrow}
+\newcommand\sse{\subseteq}
+
+\newcommand\UU{\mathcal U}
+\newcommand\OO{\mathcal O}
+
+%\newcommand{\ra}{\rightarrow}
+\newcommand{\iso}{\cong}
+\newcommand{\FF}{{\mathbb F}}
+\newcommand{\GG}{{\mathbb G}}
+\newcommand{\NN}{{\mathbb N}}
+\newcommand{\ZZ}{{\mathbb Z}}
+\newcommand{\QQ}{{\mathbb Q}}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\T}{{\mathcal T}}
+\renewcommand{\AA}{{\mathbb A}}
+
+\newcommand{\tuple}[1]{{\mathbf {#1}}}
+
+\renewcommand{\cc}[1]{{\overline{#1}^{\rm c}}}
+
+%%%%%%%%% operators
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\A}{A}
+\DeclareMathOperator{\B}{B}
+\DeclareMathOperator{\C}{C}
+\DeclareMathOperator{\D}{D}
+\DeclareMathOperator{\G}{G}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\OR}{O}
+\DeclareMathOperator{\Opp}{Opp}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\SP}{Sp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\sat}{sat}
+\DeclareMathOperator{\soc}{soc}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\CC}{CC}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% theorem-related defs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
+
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem*{Thm}{Theorem}
+\newtheorem{lem}[equation]{Lemma}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{qn}[equation]{Qeustion}
+\newtheorem{conj}[equation]{Conjecture}
+\newtheorem*{Prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{noname}[equation]{}   % BM
+\newtheorem{ex}[equation]{Example}
+\newtheorem{exs}[equation]{Examples}
+\theoremstyle{remark}
+\newtheorem{rem}[equation]{Remark}
+\theoremstyle{remark}
+\newtheorem{rems}[equation]{Remarks}
+\newtheorem*{Rem}{Remark}
+
+\newcommand{\ovl}{\overline}
+
+\subjclass[???]{??? (???)}
+\keywords{???}
+
+%\thanks{2000 {\it Mathematics Subject Classification}.
+%Primary
+%51E24, 20E42, 20G15.}
+%Secondary
+
+%\date{\today}
+
+\title[On a question of K\"ulshammer for reductive algebraic groups]
+{On a question of K\"ulshammer for reductive algebraic groups}
+
+
+% first author info
+\author[D. Lond]{Daniel Lond}
+\address%[D.Lond]
+{???}
+\email{???}
+
+
+% second author info
+\author[B.\ Martin]{Benjamin Martin}
+\address%[B.\ Martin]
+{Department of Mathematics,
+University of Aberdeen,
+King's College,
+Fraser Noble Building,
+Aberdeen AB24 3UE,
+United Kingdom}
+\email{B.Martin@abdn.ac.uk}
+
+
+%\dedicatory{Preliminary Version}
+
+\begin{document}
+
+
+\begin{abstract}
+\end{abstract}
+
+
+\maketitle
+
+\section{Introduction}
+
+Let $G$ and $H$ be linear algebraic groups over an algebraically closed field of characteristic $p> 0$.  Pick a maximal unipotent subgroup $U$ of $H$ [this is unique up to conjugacy].  By a {\em representation} of $H$ in $G$ we mean a homomorphism of algebraic groups from $H$ to $G$.  The group $G$ acts on the set of representations ${\rm Hom}(H,G)$ by $(g\cdot \rho)(h)= h\rho(g)h^{-1}$ for $h\in H$ and $g\in G$; we call the orbits {\em conjugacy classes}.  We consider the following question.
+
+\begin{qn}
+\label{qn:algKQ}
+ %Suppose $G$ is reductive.
+ Let $\sigma\colon U\ra G$ be a representation.  Are there only finitely many conjugacy classes of representation $\rho\colon H\ra G$ such that $\rho|_U$ is $G$-conjugate to $\sigma$?
+\end{qn}
+
+K\"ulshammer raised this question for finite $H$
+%without the assumption that $G$ is reductive
+[ref]; in this case the maximal unipotent subgroups are the Sylow $p$-subgroups.  An example of Cram shows that the answer to Question~\ref{qn:algKQ} is no for $H= S_3$ and $G$ a certain 3-dimensional non-connected group with $G^0$ unipotent [ref: Slodowy].
+%Hence we restrict ourselves to reductive $G$.
+If $G= {\rm GL}_n$ and $p$ does not divide $|H|$ then the answer to Question~\ref{qn:algKQ} is yes, by Maschke's Theorem.  It follows from a well-known geometric argument of Richardson that if $p$ does not divide $|H|$ then the answer to Question~\ref{qn:algKQ} is yes for any connected reductive $G$: one embeds $G$ in some ${\rm GL}_n$ and studies the behavior of the induced map ${\rm Hom}(H,G)\ra {\rm Hom}(H,{\rm GL}_n)$.  In fact, standard representation-theoretic results imply that the answer is yes for any finite group when $G= {\rm GL}_n$, and Slodowy used Richardson's argument to show the answer is yes for arbitrary finite $H$ and connected reductive $G$ under mild hypotheses on ${\rm char}(p)$.  [General case of finite $H$: there is now a counterexample in type $G_2$ [ref].]
+
+In this paper we instead consider the case when $H$ is connected and semisimple.  We settle Question~\ref{qn:algKQ} as follows.
+
+\begin{thm}
+\label{thm:main}
+ The answer to Question~\ref{qn:algKQ} is yes if $H$ is connected and semisimple.
+ %[In fact, we can bound the number of representations.]
+\end{thm}
+
+\noindent Note that we allow $G$ to be non-connected, but it is clear we can reduce immediately to the case when $G$ is connected and $Z(G)^0$ is trivial.  Also, it is clear that the answer to Question~\ref{qn:algKQ} is no for arbitrary connected reductive $H$ (e.g., just take $H$ to be a torus, $U= 1$ and $G^0$ non-unipotent).
+
+An important tool in the work of [above] is nonabelian 1-cohomology.  Let $\rho\in {\rm Hom}(H,G)$ and let $P$ be a parabolic subgroup of $G$ such that $\rho(H)\subseteq P$.  Then $H$ acts on $V:= R_u(P)$ via $h\cdot u= \rho(h)u\rho(h)^{-1}$, and representations near $\rho$ in an appropriate sense can be understood in terms of the nonabelian 1-cohomology $H^1(H,\rho,V)$.  In Section [below] we discuss this cohomological approach and study its behavior with respect to restriction of representations from $H$ to $U$.  [Further discussion.]
+%Nonetheless our proof of Theorem~\ref{thm:main} is more direct and does not go via the 1-cohomology. ...
+
+[Based on D's PhD thesis.  Related work by David Stewart: see below.  He uses high-powered cohomology techniques; our methods are more elementary.]
+
+[Acknowledgements: Marsden grants; G\"unter.]
+
+
+\section{Preliminaries}
+
+{\tt [Some useful results from ``On unipotent algebraic groups and 1-cohomology'', David Stewart:
+
+Cor. 3.4.3: Let $B =TU$ be connected solvable group with unipotent radical $U$ and maximal torus $T$.  Let $Q$ be a unipotent group on which $B$ acts.  Then the restriction map $H^1(B,Q)\ra H^1(U,Q)$ is injective.
+
+Thm 3.5.2: Let $G$ be connected reductive and let $Q$ be a unipotent group on which $G$ acts.  Then for any parabolic subgroup $P$ of $G$, the restriction map $H^1(G,Q)\ra H^1(P,Q)$ is an isomorphism of pointed sets.
+
+Corollary 3.6.2. Let $H$ be a closed, connected, reductive subgroup of G contained in a parabolic $P = LR_u(P)$ of $G$ and let $P_1$ be any parabolic subgroup of $H$. Then
+$H$ is $G$-conjugate to a subgroup of $L$ if and only if $P_1$ is as well.]}
+
+\bigskip
+We assume $G$ is a possibly non-connected algebraic group over $k$ and $H$ is a linear algebraic group over $k$.  We fix a maximal unipotent subgroup $U$ of $H$.
+%Recall the notion of R-parabolic subgroups and R-Levi subgroups of $G$ from [ref] when $G$ is reductive; note that if $G$ is connected then R-parabolic (resp.\ R-Levi) subgroups are just parabolic (Levi) subgroups in the usual sense [ref].
+
+%We say a subgroup $K$ of $G$ is {\em $G$-irreducible} ($G$-irr) if it is not contained in any proper R-parabolic subgroup of $G$.  We say a representation into $G$ is {\em $G$-irreducible} ($G$-irr) if its image is $G$-irreducible.  This coincides with the usual notion of irreducible representation if $G= {\rm GL}_n$.  If $K$ is $G$-irr then $K$ is reductive.  If $K\leq M\leq G$ then $K$ is $M$-irr and $M$ is $G$-irr [ref].
+
+Suppose $H$ is connected, let $B$ be a Borel subgroup of $H$, let $X$ be an affine variety and let $f\colon H\ra X$ be a morphism such that $f(hb)= f(h)$ for all $h\in H$ and all $b\in B$.  Then $f$ gives rise to a morphism $\ovl{f}$ from the projective variety $H/B$ to $X$.  Since $H/B$ is connected and $X$ is affine, $\ovl{f}$ must be constant, so $f$ is constant.  In particular, if $V$ is an affine $H$-variety, $v\in V$ and the stabiliser $H_v$ contains $B$ then $H_v= H$.
+
+\begin{lem}
+\label{lem:common_Borel}
+ Suppose $G$ is connected and reductive.  Let $H_1, H_2$ be connected reductive subgroups of $G$.  Suppose $B$ is a common Borel subgroup of both $H_1$ and $H_2$.  Then $H_1= H_2$.
+\end{lem}
+
+\begin{proof}
+ The quotient variety $G/H_1$ is affine since $H_1$ is reductive [ref], and $H_2$ acts on $G/H_1$ by left multiplication.  The stabiliser in $H_2$ of the coset $H_1$ contains $B$, so it must equal the whole of $H_2$.  Hence $H_2\subseteq H_1$.  The reverse inequality follows similarly, so $H_1= H_2$.
+\end{proof}
+
+\begin{lem}
+\label{lem:Borel_det}
+ Let $B$ be a Borel subgroup of $H$.  Let $\rho_1,\rho_2\in {\rm Hom}(H,G)$ such that $\rho_1|_B= \rho_2|_B$.  Then $\rho_1= \rho_2$.
+\end{lem}
+
+\begin{proof}
+ Define $f\colon H\ra G$ by $f(h)= \rho_1(h)\rho_2(h)^{-1}$.  For any $h\in H$, $b\in B$, $f(hb)= \rho_1(hb)\rho_2(hb)^{-1}= \rho_1(h)\rho_1(b)\rho_2(b)^{-1}\rho_2(h)^{-1}=  \rho_1(h)\rho_2(h)^{-1}= f(h)$.  So $f$ gives rise to a morphism $\ovl{f}$ from the connected projective variety $H/B$ to $G$ given by $\ovl{f}(hB)= f(h)$.  Then $\ovl{f}$ is constant, so $f$ is constant with value $f(1)= 1$, and the result follows.
+\end{proof}
+
+%\begin{defn}
+% Let $\sigma\in {\rm Hom}(U,G)$.  We say that {\em K\"ulshammer's property holds at $\sigma$} (resp.\ {\em irr K\"ulshammer's property holds at $\sigma$}) if $\{\rho\in {\rm Hom}(K,G)\mid \rho|_U\in G\cdot \sigma\}$ (resp.\ $\{\rho\in {\rm Hom}(K,G)_{\rm irr}\mid \rho|_U\in G\cdot \sigma\}$) is a finite union of $G$-conjugacy classes.
+%\end{defn}
+%
+%\begin{lem}
+%\label{lem:product}
+% Let $G_1,G_2$ be connected reductive groups and let $G:= G_1\times G_2$.  Let $\sigma= \sigma_1\times \sigma_2\in {\rm Hom}(U,G)$ $\sigma_i\in {\rm Hom}(U,G_i)$.  Then $\sigma$ has (irr) K\"ulshammer's property if and only if both $\sigma_1$ and $\sigma_2$ do.  [Plus we get obvious bound on the number of representations for $\sigma$ given the bounds for $\sigma_1$ and $\sigma_2$.]
+%\end{lem}
+%
+%\begin{proof}
+% Let $\rho= \rho_1\times \rho_2\in {\rm Hom}(H,G)$.  By \cite[Lem.~2.12]{BMR}, $\rho$ is $G$-irr if and only if $\rho_i$ is $G_i$-irr for $i= 1,2$.  If $K$ is a linear algebraic group and $\tau= \tau_1\times \tau_2$, $\nu= \nu_1\times \nu_2$ are representations of $K$ then $\tau$ and $\nu$ are $G$-conjugate if and only if $\tau_i$ and $\nu_i$ are $G_i$-conjugate for $i= 1,2$.  The result now follows (take $K= U$ and $K= H$).
+%\end{proof}
+% 
+%\begin{lem}
+%\label{lem:isogeny}
+% Let $f\colon G\ra G'$ be an isogeny of connected reductive groups and let $\sigma\in {\rm Hom}(U,G)$.  Define $\sigma':= f\circ \sigma\in {\rm Hom}(U,G)$.  Then $\sigma$ has (irr) K\"ulshammer's property if and only if $\sigma'$ does.
+%\end{lem}
+%
+%\begin{proof}
+% We claim that for any $\rho'\in {\rm Hom}(H,G)$, the set $\{\rho\in {\rm Hom}(K,G)\mid f\circ \rho= \rho'\}$ is finite.  To see this, observe that we can replace $k$ with any algebraically closed extension field, so without loss we can assume $k$ is transcendental over the prime field.  Then there exist $h_1, h_2\in H$ such that $h_1$ and $h_2$ topologically generate $H$ \cite[?]{BMR}; in particular, any representation of $H$ is completely determined by its values on $h_1$ and $h_2$.  As $f^{-1}(h_1)$ and $f^{-1}(h_2)$ are finite, there are only finitely many possibilities for $\rho$, as claimed.  This implies that $\{\tau\in {\rm Hom}(K,G)\mid f\circ \tau\in G\cdot \rho'\}$ is a finite union of $G$-conjugacy classes.   If $\rho\in {\rm Hom}(H,G)$ then $\rho$ is $G$-irr if and only if $f\circ \rho$ is $G'$ -irr \cite[Lem.~2.12]{BMR}.  The result now follows.
+%\end{proof}
+
+
+\section{Proof of Theorem~\ref{thm:main} for $G$ reductive}
+
+In this section we assume $G$ and $H$ are connected and semisimple.
+
+%\begin{lem}
+%\label{lem:rootgpstab}
+% Let $B'$ be a Borel subgroup of $G$, let $U'= R_u(B')$ and let $T'$ be a maximal torus of $B'$.  Let $u\in U'$ such that $u$ permutes the root groups $U_\alpha$ for $\alpha\in \Phi_{T'}(B')$.  Then $u\in Z(U')$.
+%\end{lem}
+%
+%\begin{proof}
+% This is immediate from [Humphreys: formula for conjugating unipotent elements].
+%\end{proof}
+
+\begin{lem}
+\label{lem:sameonrootgps}
+ Let $B$ be the Borel subgroup of $H$ that contains $U$, and let $T$ be a maximal torus of $B$.  Let $\rho_1, \rho_2\colon H\ra G$ be representations such that $\rho_1(B)= \rho_2(B)$ and $\rho_1(T)= \rho_2(T)$.  Set $U'= \rho_1(U)= \rho_2(U)$.
+% Suppose there is an isomorphism $\phi\colon U'\ra U'$ such that $\rho_2(u)= \phi(\rho_1(u))$ for all $u\in U$.
+ Suppose that for all $\alpha\in \Phi_T(B)$, $\rho_1(U_\alpha)= \rho_2(U_\alpha)$ and there exists $\phi_\alpha\in {\rm Aut}(\rho_1(U_\alpha))$ such that for all $u\in U_\alpha$, $\rho_2(u)= \phi_\alpha(\rho_1(u))$.
+ Then there exists $t'\in T$ such that $t'\cdot \rho_2= \rho_1$.
+\end{lem}
+
+\begin{proof}
+ Since $B$ is a Borel subgroup of $H$, $\rho_i(B)$ is a Borel subgroup of $\rho_i(H)$ for $i= 1,2$.  Lemma~\ref{lem:common_Borel} implies that $\rho_1(H)= \rho_2(H)$.  Hence we can assume that $\rho_1$ and $\rho_2$ are surjective.  Set $T'= \rho_1(T)= \rho_2(T)$.
+% By Lemma~\ref{lem:rootgpstab}, we can conjugate $\rho_1$ by some $u\in Z(U')$ to ensure that $\rho_1(T)= \rho_2(T)$; call this torus $T'$.   
+ 
+% Choose isomorphisms $\epsilon_\alpha\colon k\ra U_\alpha$ and $\epsilon_{\alpha'}\colon K\ra U_{\alpha'}$.  Then we have
+% $$ \sigma_0(\epsilon_\alpha(x))= \epsilon_{\alpha'}(f_\alpha(x_p)), $$
+%where $f_\alpha$ is a polynomial over $k$ [ref: Humphreys?].  Now $t\epsilon_\alpha(x)t^{-1}= \epsilon_\alpha(\alpha(t)x)$ and $t'\epsilon_{\alpha'}(x)(t')^{-1}= \epsilon_{\alpha'}(\alpha'(t')x)$ for all $x\in k$, all $t\in T$ and all $t'\in T'$.  As $\alpha$ and $\alpha'$ are nontrivial characters, $f$ must be a monomial, so we have
+% \begin{equation}
+% \label{eqn:U}
+%  \sigma_0(\epsilon_\alpha(x))= \epsilon_{\alpha'}(a_\alpha x^{p^{r_\alpha}})
+% \end{equation}
+% for some $r_\alpha\geq 0$ and some $a_\alpha\in k^*$.
+ 
+ Pick a base $\{\alpha'_1,\ldots, \alpha'_m\}$ for $\Phi_{T'}(B')$.  Since $\rho_1$ and $\rho_2$ map a given root group of $U$ with respect to $T$ to a root group of $U'$ with respect to $T'$, there exist $\alpha_1,\ldots, \alpha_m\in \Phi_T(B)$ such that $\rho_1(U_{\alpha_i})= \rho_2(U_{\alpha_i})= U_{\alpha'_i}$ and $\alpha'_i(\rho_1(t))= \alpha'_i(\rho_2(t))$ for all $i$.  [This is not quite true as stated: some of the $U_{\alpha_i}$ may be mapped by $\rho_1$ and $\rho_2$ to 1; we're only interested in the case when this doesn't happen.  A bit more argument is needed here.]  As $H$ is semisimple, this implies that $\rho_1|_T= \rho_2|_T$.
+ 
+ By hypothesis, each $\phi_{\alpha_i}$ is an automorphism of $U_{\alpha'_i}$, so there exist $b_1,\ldots, b_m\in k^*$ such that $\phi_{\alpha_i}(\epsilon_{\alpha'_i}(x))= \epsilon_{\alpha'_i}(b_ix)$ for each $i$ and for all $x\in k$; so there exist $a_1,\ldots, a_m\in k^*$ such that $\rho_2(\epsilon_{\alpha_i}(x))= \rho_1(\epsilon_{\alpha_i}(a_ix))$ for each $i$ and for all $x\in k$ [check!].
+ 
+ The weights $\alpha'_1,\ldots, \alpha'_m$ are linearly independent as $H$ is semisimple, so there exists $t'\in T'$ such that $\alpha_i(t')= a_i^{-1}$ for $1\leq i\leq m$.  We then have $(t'\cdot \rho_2)(\epsilon_{\alpha_i}(x))= \rho_1(\epsilon_{\alpha_i}(x))$ for each $i$ and for all $x\in k$.  It follows that $\rho_1|_{\widetilde{U}}= (t'\cdot \rho_2)|_{\widetilde{U}}$, where $\widetilde{U}$ is the subgroup of $U$ generated by the $U_{\alpha_i}$.  But $\rho_1(\widetilde{U})= \rho_2(\widetilde{U})= (t'\cdot \rho_2)(\widetilde{U})$ since the $U_{\alpha'_i}$ generate $U'$ [ref: Humphreys?], and ${\rm ker}(\rho_1|_U)= {\rm ker}(\rho_2|_U)= {\rm ker}((t'\cdot \rho_2)|_U)$, so $\rho_1|_U= (t'\cdot \rho_2)|_U$.
+ 
+ To complete the proof, it is enough by Lemma~\ref{lem:Borel_det} to show that $\rho_1|_B= (t'\cdot \rho_2)|_B$.  But $(t'\cdot \rho_2)|_T= \rho_2|_T= \rho_1|_T$ from the discussion above, so we are done.
+ %  Eqn.~(\ref{eqn:U}) implies that $\alpha'\circ \rho= p^{r_\alpha}\alpha$ for all $\alpha\in \Phi^+_T(H)$ [notation].  Hence $\langle \rho\circ \beta^\vee, \alpha'\rangle= \langle \beta^\vee, \alpha'\circ \rho\rangle= \langle \beta, p^{r_\alpha}\alpha\rangle= p^r\langle \beta^\vee, \alpha\rangle$.  But this is independent of $\rho$, so in particular we have $\langle \rho\circ \beta^\vee, \alpha'\rangle= \langle \rho_0\circ \beta^\vee, \alpha'\rangle$.  Since $H$ is semisimple, it follows that $\rho|_T= \rho_0|_T$.  But then $\rho|_B= \rho_0|_B$, so $\rho= \rho_0$ by Lemma~\ref{lem:Borel_det}.
+%
+% 
+%
+\end{proof}
+
+[Note: In the situation of the above lemma (and with $\rho_1$, $\rho_2$ assumed surjective), suppose we don't assume that $\rho_1(U_\alpha)= \rho_2(U_\alpha)$ for every $\alpha$.  Then $\rho_1$ and $\rho_2$ need no longer be $G$-conjugate.  I suspect, however, that in this case they are ${\rm Aut}(G)$-conjugate.  If this is the case then we should get a reasonable bound in Theorem~\ref{thm:main} involving $|{\rm Out}(G)|$ and the size of the Weyl group of $T'$ in $N_G(U')$ (cf.\ below).] 
+%The next result is immediate as connected semisimple groups are perfect.
+%
+%\begin{lem}
+%\label{lem:torus}
+% Suppose $K$ is connected semisimple and $G$ is a torus.  Then ${\rm Hom}(K,G)$ consists of only the trivial representation.  In particular, every $\sigma\in {\rm Hom}(U,G)$ has (irr) K's property.
+%\end{lem}
+
+%\begin{rem}
+% If $K$ is a nontrivial torus and $G$ is nontrivial reductive then the answer to K's question is no: for $U= 1$ and the trivial representation of $U$ does not have (irr) K's property because ${\rm Hom}(K,G)$ is countably infinite.  [But this is the only obstruction: the proof going from $L$ to $P$ works if the projection onto $L$ has irr K's property.]
+%\end{rem}
+
+%\begin{lem}
+% Let $K$ be connected semisimple and let $L$ be a Levi subgroup of ${\rm SL}_n(k)$ or ${\rm GL}_n(k)$ and let $\sigma\in {\rm Hom}(K,L)$.  Then $\sigma$ has (irr) K's property.
+%\end{lem}
+%
+%\begin{proof}
+% Since $L$ is isogenous to the product of a torus with groups ${\rm SL}_{n_i}(k)$, it suffices by Lemmas~\ref{lem:product}, \ref{lem:isogeny} and \ref{lem:torus} to consider the special case when $L= {\rm SL}_n(k)$.
+% 
+% [Now use results from representation theory.  Some work is needed here!]
+%\end{proof}
+
+%\begin{lem}
+%\label{lem:surj}
+% Let $\sigma_0\colon U\ra G$ be a representation.  Then is at most one $G$-conjugacy classes of epimorphisms $\rho\colon H\ra G$ such that $\rho|_U\in G\cdot \sigma_0$.
+%\end{lem}
+%
+%\begin{proof}
+% Set $U'= \sigma_0(U)$.  Fix an epimorphism $\rho_0\colon H\ra G$ such that $\rho_0|_U= \sigma_0$ (if there is no such $\rho_0$ then we are done).  Then $U'$ is a maximal unipotent subgroup of $G$ [some more argument needed here; probably will have been done above].  Choose the Borel subgroup $B'$ of $G$ such that $U'= R_u(B')$.
+%% and choose a maximal torus $T'$ of $B'$.
+%Let $B$ be the Borel subgroup $B$ of $H$ such that $U= R_u(B)$; then $B'= \rho_0(B)$ [justify].
+%% We can choose a maximal torus $T$ of $B$ such that $\rho_0(T)= T'$.
+% 
+% If $\rho\colon H\ra G$ is a representation such that $\rho|_U= \sigma_0$ then $\rho(B)= \rho_0(B)$ by the same argument as above.  It follows from Lemma~\ref{lem:sameonrootgps} that $\rho$ is $B$-conjugate to $\rho_0$, as required.
+ 
+%% Replacing $\rho_0$ and $\sigma_0$ by suitable $B$-conjugates, we can assume that $\rho_0(T)= T'$.
+% 
+% Let $\alpha\in \Phi_T(H)$ [notation: set of roots].  Then $\sigma_0(U_\alpha)= \rho_0(U_\alpha)$ [notation] is a 1-dimensional $T'$-stable unipotent subgroup of $U'$, so $\sigma_0(U_\alpha)= U_{\alpha'}$ for some $\alpha'\in \Phi_{T'}(H)$.  Choose isomorphisms $\epsilon_\alpha\colon k\ra U_\alpha$ and $\epsilon_{\alpha'}\colon K\ra U_{\alpha'}$.  Then we have
+% $$ \sigma_0(\epsilon_\alpha(x))= \epsilon_{\alpha'}(f_\alpha(x_p)), $$
+%where $f_\alpha$ is a polynomial over $k$ [ref: Humphreys?].  Now $t\epsilon_\alpha(x)t^{-1}= \epsilon_\alpha(\alpha(t)x)$ and $t'\epsilon_{\alpha'}(x)(t')^{-1}= \epsilon_{\alpha'}(\alpha'(t')x)$ for all $x\in k$, all $t\in T$ and all $t'\in T'$.  As $\alpha$ and $\alpha'$ are nontrivial characters, $f$ must be a monomial, so we have
+% \begin{equation}
+% \label{eqn:U}
+%  \sigma_0(\epsilon_\alpha(x))= \epsilon_{\alpha'}(a_\alpha x^{p^{r_\alpha}})
+% \end{equation}
+% for some $r_\alpha\geq 0$ and some $a_\alpha\in k^*$.
+% 
+% Now let $\rho\in {\rm Hom}(K,G)$ be an epimorphism such that $\rho|_U= \sigma_0$.  Choose $b'\in B'$ such that $b'\rho(T)(b')^{-1}= T'$.  Then $b'$ normalizes each root group $U_{\alpha'}$ of $G$ with respect to $T'$, since $\rho$ takes root groups of $U$ with respect to $T$ to root groups of $U'$ with respect to $T'$.  Pick a base $\{\alpha'_1,\ldots, \alpha'_m\}$ for the set of positive roots of $G$ with respect to $T'$ and $B'$.  Then there exist $a_1,\ldots, a_m\in k^*$ such that $b'\epsilon_{\alpha'_i}(x)(b')^{-1}= \epsilon_{\alpha'_i}(a_ix)$ for each $i$ and for all $x\in k$.  The weights $\alpha'_1,\ldots, \alpha'_m$ are linearly independent as $H$ is semisimple, so there exists $t'\in T'$ such that $b'\epsilon_{\alpha'_i}(x)(b')^{-1}= \epsilon_{\alpha'_i}(a_i^{-1}x)$ for each $i$ and for all $x\in k$.  It follows that $t'b'$ centralizes each $U_{\alpha'_i}$.  But the $U_{\alpha'_i}$ generate $U'$ [ref: Humphreys?], so $t'b'\in C_{B'}(U')= Z(U')$ [ref].  Replacing $\rho$ with $t'b'\cdot \rho$ if necessary, we can therefore assume that $\rho(T)= T'$ while keeping our assumption that $\rho|_U= \sigma_0$.
+% 
+% Eqn.~(\ref{eqn:U}) implies that $\alpha'\circ \rho= p^{r_\alpha}\alpha$ for all $\alpha\in \Phi^+_T(H)$ [notation].  Hence $\langle \rho\circ \beta^\vee, \alpha'\rangle= \langle \beta^\vee, \alpha'\circ \rho\rangle= \langle \beta, p^{r_\alpha}\alpha\rangle= p^r\langle \beta^\vee, \alpha\rangle$.  But this is independent of $\rho$, so in particular we have $\langle \rho\circ \beta^\vee, \alpha'\rangle= \langle \rho_0\circ \beta^\vee, \alpha'\rangle$.  Since $H$ is semisimple, it follows that $\rho|_T= \rho_0|_T$.  But then $\rho|_B= \rho_0|_B$, so $\rho= \rho_0$ by Lemma~\ref{lem:Borel_det}.
+%\end{proof}
+
+%\begin{lem}
+%\label{lem:irr}
+% Let $\sigma\in {\rm Hom}(U,G)$.  Then $\sigma$ has irr K\"ulshammer's property.
+%\end{lem}
+%
+%\begin{proof}
+% We use induction on ${\rm dim}(G)$.  Any semisimple algebraic group is isogenous to a direct product of simple groups, so by Lemmas~\ref{lem:product} and \ref{lem:isogeny}, we can assume $G$ is simple.  Let $\rho\in {\rm Hom}(H,G)$ be irreducible and suppose $\rho|_U= \sigma$.  By Lemma~\ref{lem:surj} there is at most one such $\rho$ such that $\rho$ is surjective, so assume $\rho$ is not surjective.  Then $\rho(H)$ is contained in a maximal proper connected subgroup $M$ of $G$.  Since $\rho(H)$ is $G$-irreducible, $M$ is $G$-irreducible---in particular, $M$ is reductive---and $\rho$ is $M$-irr when regarded as a representation of $H$ in $M$.  By induction, $\sigma$ has irr K\"ulshammer's property when regarded as a representation of $U$ in $M$.  But $G$ has only finitely many $G$-conjugacy classes of maximal connected subgroups [Liebeck-Seitz; BM?], so the result follows.
+%\end{proof}
+% 
+%\begin{lem}
+%\label{lem:equal_tor}
+% Let $B$ be a Borel subgroup of $H$ such that $U= R_u(B)$ and let $T$ be a maximal torus of $B$.  Let $\rho,\tau\in {\rm Hom}(H,G)$.  Suppose $K$ is connected reductive, $\rho|_T= \tau|_T$ and $\rho(U)= \tau(U)$.  Then  $\rho(H)= \sigma(H)$ and there exists $t\in T$ such that $\tau= t\cdot \rho$.
+%\end{lem}
+%
+%\begin{proof}
+% Since $\rho(B)$ and $\tau(B)$ are equal and are Borel subgroups of $\rho(H)$, $\tau(H)$ respectively, it follows from Lemma~\ref{lem:common_Borel} that $\rho(H)= \tau(H)$.  The result now follows from Lemma~\ref{lem:surj}.
+%\end{proof}
+
+%\begin{proof}
+% Let $\alpha$ be a positive root of $K$ with respect to $T$ and $B$ and let $U_\alpha$ be the corresponding root group.  We can assume ${\rm ker}(\rho|_{U_\alpha})$ is nontrivial: for otherwise $\rho$ and $\sigma$ kill the simple factor $K_0$ of $K$ that contains $U_\alpha$, and we can replace $K$ with $K/K_0$.  Let $T'= \rho(T)= \sigma(T)$.  Then $\rho(U_\alpha)$ is a 1-dimensional unipotent subgroup of $\rho(K)$, so $\rho(U_\alpha)$ corresponds to some root $\beta'$ of $\rho(K)$ with respect to $T'$.  Likewise, $\sigma(U_\alpha)$ corresponds to some root $\gamma'$ of $\sigma(K)$ with respect to $T'$.  We show that $\beta'= \gamma'$.  To see this, note that for any $t\in T$ and any $1\neq u\in U_\alpha$, $tut^{-1}= u$ if and only if $\alpha(t)= 1$, $\rho(t)\rho(u)\rho(t)^{-1}= \rho(u)$ if and only if $\beta'(\rho(t))= 1$ and $\sigma(t)\sigma(u)\sigma(t)^{-1}= \sigma(u)$ if and only if $\gamma'(\sigma(t))= 1$.  But $utu^{-1}= u$ if and only if $\rho(t)\rho(u)\rho(t)^{-1}= \rho(u)$ if and only if $\sigma(t)\sigma(u)\sigma(t)^{-1}= \sigma(u)$, because $\rho|_{U_\alpha}$ and $\sigma|_{U_\alpha}$ are injective.  Hence $\beta'(\rho(t))= 1$ if and only $\gamma'(\sigma(t))= 1$.  Since $\rho(t)= \sigma(t)$, ${\rm ker}(\beta')= {\rm ker}(\gamma')$, which forces $\gamma'= \pm \beta'$.  But $\beta', \gamma'$ are both roots of the unipotent group $\rho(U_\alpha)= \sigma(U_\alpha)$ which is normalized by $T'$, so $\beta'= \gamma'$, as claimed.
+% 
+% Now we proceed by induction on ${\rm dim}(K)$.  The result is trivial if $K= 1$.  The result holds for $K$ if it holds for $[K,K]$, so we can assume by induction that $K$ is semisimple.  Let $P$ be a maximal parabolic subgroup of $K$ and let $L$ be a Levi subgroup of $P$ that contains $T$.  Then the hypothesis of the lemma holds for $L$ with respect to $B\cap L$ and $T$ [some details needed here: $L$ is generated by certain root groups $U_{\pm \alpha_i}$ where the $\alpha_i$ are positive; $U\cap L= R_u(B\cap L)$ is generated by the $U_{\alpha_i}$.  Since $\rho(U_{\alpha_i})= \sigma(U_{\alpha_i})$, we have $\rho(U\cap L)= \sigma(U\cap L)$, as required.]  So by induction, we can assume after conjugating $\rho$ by some $t\in T$ that $\rho|_L= \sigma|_L$.  Set $L'= \rho(L)= \sigma(L)$.  Let $\alpha'$ be the unique simple root of $\rho(K)$ such that $\alpha'\not\in \Phi(L')$.  Then $\alpha'$ is also the unique simple root of $\sigma(K)$ such that $\alpha'\not\in \Phi(L')$.
+% 
+% [Now show there exists $t\in T$ such that the restrictions of $t\cdot \rho$ and $\sigma$ to $\langle T',\rho(U_\alpha)\rangle= \langle T',\sigma(U_\alpha)\rangle$ are equal for some $t\in Z(L)^0$.  To do this boils down to showing that the two simple rank 1 subgroups of $\rho(K)$, $\sigma(K)$ corresponding to $\alpha'$ are isomorphic.  They have the same root $\alpha'$, so this is the case.  Now deduce that $(t\cdot \rho)_B= \sigma|_B$,  then appeal to Lemma~\ref{lem:Borel_det} to deduce that $t\cdot\rho= \sigma$.]
+%\end{proof}
+%
+%%\begin{proof}
+%% Let $\alpha$ be a positive root of $K$ with respect to $T$ and $B$ and let $U_\alpha$ be the corresponding root group.  Choose an algebraic group isomorphism $\epsilon_\alpha\colon k\ra U_\alpha$.  Then $t\epsilon_\alpha(x)t^{-1}= \epsilon_\alpha(\alpha(t)x)$ for all $t\in T$, $x\in k$, and $\epsilon_\alpha$ is the unique isomorphism from $k$ to $U$ with this property, up to rescaling.  Since $g$ centralizes $\rho(T)$ and normalizes $\rho(U)$, it follows that the map $\epsilon_\alpha'\colon k\ra U$ defined by $\epsilon_\alpha'(x)= g\epsilon_\alpha(x)g^{-1}$ also satisfies $t\epsilon_\alpha(x)t^{-1}= \epsilon_\alpha(\alpha(t)x)$ for all $t\in T$, $x\in k$.  Uniqueness implies that there exists $a\in k^*$ such that $\epsilon_\alpha'(x)= \epsilon_\alpha(ax)$ for all $x\in k$.  Hence $g$ normalizes $U_\alpha$.
+%% 
+%% Consider the simple group $K_\alpha$ of rank 1.  There exists $t_\alpha\in \alpha^\vee(k^*)$ such that $t_\alpha g$ centralizes $U_\alpha$.  Since $t_\alpha$ centralizes $\alpha^\vee(k^*)$, it follows that the representations $\rho|_{K_\alpha}$ and $(t_\alpha g\cdot \rho)|_{K_\alpha}$ agree on $\alpha^\vee(k^*)U_\alpha$, which is a Borel subgroup of $K_\alpha$.  Then $\rho|_{K_\alpha}= (t_\alpha g\cdot \rho)|_{K_\alpha}$ by Lemma~\ref{lem:Borel_det}.  In particular, $(t_\alpha g\cdot \rho)(K_\alpha)\subseteq \rho(K)$, so $g\rho(K_\alpha)g^{-1}\subseteq \rho(K)$.  But $K$ is generated by the $K_\alpha$ as $\alpha$ runs through the positive roots of $K$, so $g$ normalizes $\rho(K)$.
+%% 
+%% Conjugation by $g$ gives an isomorphism from $\rho(K)$ to $\rho(K)$ which fixes $T$ pointwise and fixes the roots of $K$ with respect to $T$.  The result now follows from the Isomorphism Theorem for connected reductive groups [ref: Springer].
+%%\end{proof}
+
+ 
+%\begin{prop}
+% Let $P$ be a parabolic subgroup of $G$, let $L$ be a Levi subgroup of $P$ and let $\pi_L\colon P\ra L$ be the canonical projection.  Suppose $K$ is connected and semisimple and let $\omega\in {\rm Hom}(U,L)_{\rm irr}$.  Fix $\sigma\in {\rm Hom}(U,P)$ such that $\pi_L\circ \sigma= \omega|_U$.  Set $R= \{\rho\in {\rm Hom}(K,P)\mid \pi\circ\rho\in L\cdot \omega\}$. ....
+%\end{prop}
+%
+%\begin{proof}
+% By [Daniel's Thm~4.21], it's enough to show that the map $\displaystyle \frac{H^1(K,V)_\omega}{C_L(\omega)}\ra \frac{H^1(U,V)_{\omega|_U}}{C_L(\omega|_U)}$ has finite fibres.  So, let $\alpha, \beta\in Z^1(K,V)_\omega$ such that the images of $\alpha|_U, \beta|_U$ in $\displaystyle \frac{H^1(U,V)_{\omega|_U}}{C_L(\omega|_U)}$ are equal.  Without loss of generality [ref] we may assume that $\alpha|T$ and $\beta|_T$ are trivial.  Then $\beta|_U$ and $(m\cdot \alpha)|U$ lie in the same 1-cohomology class for some $m\in C_L(\omega|_U)$.  [Show: wlog they are actually equal.]  So $\beta(u)= m\alpha(u)m^{-1}$ for all $u\in U$.
+% 
+%\end{proof}
+
+%The following is the key technical lemma that allows us to pass from Levi subgroups to parabolic subgroups.
+%
+%\begin{lem}
+%\label{lem:L_to_P}
+% Let $P$ be a parabolic subgroup of $G$ with Levi subgroup $L$, and let $\pi\colon P\ra L$ be the canonical projection.  Let $\tau\in {\rm Hom}(K,L)_{\rm irr}$ and let $\sigma\colon U\ra P$ such that $\pi\circ \sigma= \tau$.  Then the set of representations $\rho\in {\rm Hom}(K,P)$ such that $\rho|_U= \sigma$ and $\pi\circ \rho= \tau$ is contained in a finite union of $P$-conjugacy classes.
+%\end{lem}
+%
+%\begin{proof}
+% Let $C= \{\rho\in {\rm Hom}(K,P)\mid \rho|_U= \sigma, \pi\circ \rho= \tau\}$.  Set $U'= \sigma(U)$ and set $M:= N_P(U')$.  Define an equivalence relation $\sim$ on $C$ by $\rho\sim \mu$ if $\rho|_T$ and $\mu|_T$ are $M$-conjugate.  We claim that if $\rho\sim\sigma$ then $\rho$ and $\mu$ are $P$-conjugate.  So suppose $\rho\sim \mu$.  Then there exists $m\in M$ such that $(m\cdot \rho)|_T= \mu|_T$.  We have $\mu(U)= (m\cdot\rho)(U)= m\rho(U)m^{-1}= \rho(U)$, so $\mu$ is $\mu(T)$-conjugate to $m\cdot \rho$ by Lemma~\ref{lem:equal_tor}.
+%
+% To complete the proof, it suffices to show that $\sim$ has only finitely many equivalence classes in $C$.  Fix a maximal torus $T'$ of $M$ and choose a maximal torus $\widetilde{T}$ of $G$ such that $T'\subseteq \widetilde{T}$.  Let $\rho,\mu\in C$.  Since all maximal tori of $M$ are $M$-conjugate, we can assume that $\rho(T), \mu(T)\subseteq T'$.  Since $T$ is linearly reductive, we have $(u\cdot \rho)|_T= (v\cdot \mu)|_T= \tau|_T$ for some $u,v\in R_u(P)$ [give more detail]; hence $\rho|_T$ and $\mu|_T$ are $G$-conjugate.  By $C_G(\rho(T))$-conjugacy of maximal tori of $C_G(\rho(T))$, we can choose $g\in N_G(\widetilde{T})$ such that $(g\cdot\rho)|_T= \mu|_T$.  Hence $\mu|_T$ is equivalent to $(n_i\cdot \rho)|_T$ for some $i$, where the $n_i$ are a set of representatives for $N_G(\widetilde{T})/\widetilde{T}$.  The result now follows.
+%\end{proof}
+%
+%[Have we proved something stronger?  We don't need $\rho|_U$ conjugate to $\sigma$: just $\rho(U)$ conjugate to $\sigma(U)$ seems to be enough.]
+
+\begin{thm}
+\label{thm:alg_kuls}
+ The answer to K\"ulshammer's question is yes for $H$ and $G$ connected and semisimple.
+\end{thm}
+
+\begin{proof}
+ Let $\sigma\colon U\ra G$ and let $U'= \sigma(U)$.  Let $B$ be the Borel subgroup of $H$ that contains $U$ and fix a maximal torus $T$ of $B$.  Fix a maximal torus $T'$ of $N_G(U')$.  Let $C= \{\rho\in {\rm Hom}(H,G)\mid \rho|_U= \sigma\}$.  If $\rho\in C$ then $\rho(T)$ normalizes $\rho(U)= U'$, so $\rho(T)$ is a torus of $N_G(U')$.  By conjugacy of maximal tori of $N_G(U')$, there exists $g\in N_G(U')$ such that $(g\cdot \rho)(T)\subseteq T'$.  If $h\in N_G(U')$ and $(h\cdot \rho)(T)\subseteq T'$ then there exists $n\in N_{N_G(U')}(T')$ such that $(h\cdot \rho)(T)= ((ng)\cdot \rho)(T)$.  The group $N_{N_G(U')}(T')/C_{N_G(U')}(T')$ is finite, so there is a finite set of subtori $S_1,\ldots, S_r$ of $T'$ such that $\rho(T)$ is $N_G(U')$-conjugate to one of $S_1,\ldots, S_r$.
+  
+ Define a relation $\equiv$ on $C$ by $\rho_1\equiv \rho_2$ if there exist $i\in \{1,\ldots, r\}$ and $g_1,g_2\in N_G(U')$ such that $(g_1\cdot \rho_1)(T)= (g_2\cdot \rho_1)(T)= S_i$ and $\rho_1(U_\alpha)= \rho_2(U_\alpha)$ for all $\alpha\in \Phi_T(U)$.  It is clear that $\equiv$ is an equivalence relation.    Define $C_i= \{\rho\in G\mid (g\cdot \rho)(T)= S_i\ \mbox{for some $g\in N_G(U')$}\}$.  If $(g\cdot \rho)(T)= S_i$ then $(g\cdot \rho)$ must map any root group $U_\alpha$ of $U$ with respect to $T$ to a root group of $U'$ with respect to $S_i$, so there are only finitely many possibilities for $(g\cdot \rho)(U_\alpha)$.  It follows that $\equiv$ has only finitely many equivalence classes.
+ 
+ To complete the proof it is enough, therefore, to show that if $\rho_1\equiv \rho_2$ then $\rho_1$ and $\rho_2$ are $G$-conjugate.  So suppose $g_1$ and $g_2$ are [as in the defn of $\equiv$].  Set $U_{\alpha'}= \rho_1(U_\alpha)= \rho_2(\alpha)$ if this is nontrivial [recall that $\rho_1(U_\alpha)$ might be just 1].  Then the map $\phi\colon G\ra G$ given by $\phi(g)= g_2g_1^{-1}gg_1g_2^{-1}$ gives rise to an automorphism of $U_\alpha'$ for all $\alpha'\in \Phi_{S_i}(U')$.  It follows by Lemma~\ref{lem:sameonrootgps} that $g_1\cdot \rho_1$ and $g_2\cdot \rho_2$ are $T$-conjugate, so we are done.
+\end{proof}
+
+[Consequence: Look at {\bf images} of representations and prove an analogous finiteness result, for connected reductive $H$ as well?]
+
+
+\section{1-cohomology}
+
+[Describe Daniel's approach using 1-cohomology.]
+
+[We've proved Theorem~\ref{thm:main} for reductive $G$ (it's enough to take $G$ to be connected and semisimple, since $H$ is connected and semisimple).  I think the theorem follows for arbitrary non-reductive $G$ by taking the result for the special case of reductive groups and applying it to the reductive group $G/V$, then using David Stewart's result that the restriction map $H^1(B,V)\ra H^1(U,V)$ is injective.  Here $V= R_u(G)$ and $B$ is a Borel subgroup of $G$ with unipotent radical $U$.]
+
+[An application:
+
+Theorem: Let $G$ be a reductive group such that the simple components of $G$ are all of type $A_n$ or $B_2$.  Then the answer to K's question is yes for any $H$ with $H^0$ semisimple.
+
+Proof (sketch): We can approximate $H$ with a sufficiently large finite subgroup, so assume without loss that $H$ is finite.  It's enough to study the simple components of $G$ separately, so without loss we assume $G$ is simple.  If $G$ is of type $B_2$ and $p\neq 2$ then we're done by Slodowy's paper, so without loss we assume that either $G$ is of type $A_n$, or $G$ is of type $B_2$ and $p= 2$.  Note that maximal parabolics of $G$ have abelian unipotent radicals under this hypothesis.
+
+We now use an inductive proof.  If $\rho$ is $G$-irreducible then we're done.  Otherwise put $\rho$ into a maximal parabolic $P$.  The key point is that we can transfer the problem from $P$ into a Levi of $P$ by the usual arguments, because the restriction map $H^1(H,V)\ra H^1(U,V)$ is injective for any finite $H$ if $V= R_u(P)$ is abelian.  (Here $U$ is a Sylow $p$-subgroup of $H$.)  By induction on ${\rm dim}(G)$, the result is true for $L$---for the simple components of $L$ are all of type $A_n$ or $B_2$---and we get what we want.
+
+This result shows that the $G_2$ counterexample to K's question for finite $H$ is in a sense the smallest possible: there is no such counterexample for any other $G$ of rank 1 or 2.]
+
+%\begin{lem}
+% Let $\sigma\in {\rm Hom}(U,G)$.  Then $\sigma$ has irr K's property.
+%\end{lem}
+%
+%\begin{proof}
+% Choose an embedding $i\colon G\ra {\rm GL}_n(k)$.  Let $C:= \{\rho\in {\rm Hom}(K,G)\mid \rho|_U\in G\cdot \sigma\ \mbox{and $\rho$ is $G$-irreducible}\}$.  Since $i\circ \sigma$ has K's property [since answer is yes for ${\rm GL}_n(k)$], the set $\{i\circ\rho\mid \rho\in C\}$ is contained in a finite union of ${\rm GL}_n(k)$-conjugacy classes.  Without loss of generality we can assume $k$ is not $\bar \FF_p$ [further discussion].  Hence $K$ admits a finite topological generating subset $\{s_1,\ldots, s_N\}$ for some $N\in \NN$ [ref].
+% 
+% Consider the varieties $G^N$ (resp.\ ${\rm GL}_n(k)^N$) with $G$-action (resp.\ ${\rm GL}_n(k)$-action) given by simultaneous conjugation.  We denote by $G^N/G$ (resp.\ ${\rm GL}_n(k)^N/{\rm GL}_n(k)$) the quotient variety and by $\pi\colon G^N\ra G^N/G$ (resp.\ $\psi\colon {\rm GL}_n(k)^N\ra {\rm GL}_n(k)^N/{\rm GL}_n(k)$) the canonical projection.  The inclusion of $G^N$ in ${\rm GL}_n(k)^N$ gives rise to a morphism $\Psi\colon G^N/G\ra {\rm GL}_n(k)^N/{\rm GL}_n(k)$.  Let $D= \{(i(\rho(s_1)),\ldots, i(\rho(s_N)))\mid \rho\in C\}$.  Then $D$ is contained in a finite union of ${\rm GL}_n(k)$-conjugacy classes.  Hence $\psi(D)$ is finite.  If $\rho\in C$ then $\Psi(\pi(\rho(s_1),\ldots, \rho(s_N)))= \psi(i(\rho(s_1)),\ldots, i(\rho(s_N)))\in \psi(D)$, so $\pi(\rho(s_1),\ldots, \rho(s_N))\in \Psi^{-1}(D)$.  Now $\Psi$ is a finite morphism [ref], so $\Psi^{-1}(D)$ is finite.  Since $\rho$ is $G$-irreducible for every $\rho\in C$, it follows from [ref] that $\{(\rho(s_1),\ldots, \rho(s_N))\mid \rho\in C\}$ is a finite union of $G$-conjugacy classes.  Hence $C$ is a finite union of $G$-conjugacy classes, as required.
+%\end{proof}
+
+
+\end{document}
+
+
+ 
+ 
