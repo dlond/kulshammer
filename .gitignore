@@ -1,0 +1,4 @@
+# ignore latex junk
+*.aux
+*.log
+
