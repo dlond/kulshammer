@@ -1,0 +1,48 @@
+\documentclass[12pt, a4paper]{amsart}
+\usepackage{amscd, amsfonts, amssymb}
+\usepackage{mathrsfs}
+\usepackage[all]{xy}
+
+\usepackage[landscape]{geometry}
+\usepackage[T1]{fontenc}
+
+\newcommand{\Hom}[3]{\mathrm{Hom}(#1, #2)_{#3}}
+\newcommand*{\ditto}{---\textquotedbl---}
+
+\newtheorem{qn}[equation]{Question}
+
+\begin{document}
+
+\title{K\"ulshammer Notes}
+\maketitle
+
+$G$, $H$ linear algebraic groups over $k$, $\mathrm{char}\,k = p>0$.
+
+$U$ maximal unipotent subgroup of $H$.
+
+\begin{qn}
+	Let $\sigma\colon U\rightarrow G$ be a representation.  Are there only finitely many conjugacy classes of representation $\rho\colon H\rightarrow G$ such that $\rho|_U$ is $G$-conjugate to $\sigma$?
+\end{qn}
+
+\begin{tabular}{c|c|l}
+	$H$ & $G$ & status \\
+	\hline
+	finite & non-reductive & counterexample [Cram] \\
+	\ditto & $GL_n$ & $p$ doesn't divide $|H| \Rightarrow$ yes [Maschke's Theorem] \\
+	\ditto & connected, reductive & $p$ doesn't divide $|H| \Rightarrow$ yes [Richardson] \\
+	         &                & -- \emph{embed $G$ in $GL_n$ and study induced map $\mathrm{Hom}(H, G)\rightarrow \mathrm{Hom}(H, GL_n)$} \\
+	finite & $GL_n$ & yes [Representation Theory] \\
+	\ditto & $G$ & $p$ is good for $G \Rightarrow $ yes [Slodowy] \\
+	         &         & -- \emph{uses Richardson's argument} \\
+	finite & $G_2$ & counterexample [BMR] \\
+	connected, semisimple & reductive (connected, semisimple) & yes [1.] \\
+	\ditto & non-reductive & yes [2.]
+\end{tabular}
+
+\begin{proof} [Sketch of proof 1]
+\end{proof}
+
+\begin{proof} [Sketch of proof 2]
+\end{proof}
+
+\end{document}
