@@ -4,4 +4,5 @@
 *.synctex.gz
 *.bbl
 *.blg
+kulshammer.fdb_latexmk
 .DS_Store
