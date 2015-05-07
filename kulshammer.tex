@@ -15,6 +15,7 @@
 \usepackage{latexsym}
 \usepackage{verbatim}
 \usepackage{enumerate}
+\usepackage[all,cmtip]{xy}
 %\usepackage[colorlinks=true]{hyperref}
 
 
@@ -216,6 +217,54 @@ Corollary 3.6.2. Let $H$ be a closed, connected, reductive subgroup of G contain
 $H$ is $G$-conjugate to a subgroup of $L$ if and only if $P_1$ is as well.]}
 
 \bigskip
+\begin{defn} Let $X,Y$ be (algebraic) groups. Then we denote by $\mathrm{Hom}(X, Y)$ the set of (algebraic) group homomorphisms from $X$ to $Y$.
+\end{defn}
+
+\begin{lem} Let $R \subset \mathrm{Hom}(K, P)$. Then $R$ is contained in a finite union of $G$-conjugacy classes if and only if it is contained in a finite union of $P$-conjugacy classes.
+  \label{lem:GPconj}
+\end{lem}
+\begin{proof}
+	Let $\rho_1, \rho_2 \in R$ such that $\rho_1$ and $\rho_2$ lie in the same $G$-conjugacy class of $R$. Then there exists $g\in G$ such that
+	\begin{align*}
+		g \rho_1(x) g^{-1} = \rho_2(x),
+	\end{align*}
+for all $x \in K$.
+	
+	Let $Q = gPg^{-1}$, hence $\rho_2(K) \subset P \cap Q$.
+	Let $T$ be a maximal torus of $G$ contained in $P\cap Q$. Since $T$ and $gTg^{-1}$ are maximal tori of $Q$ they must be $Q$-conjugate, so there exists $q\in Q$ such that
+	\begin{align*}
+		qTq^{-1} = gTg^{-1}.
+	\end{align*}
+	Then there exists $r\in P$ such that $q = grg^{-1}$, so
+	\begin{align*}
+		grg^{-1}Tgr^{-1}g^{-1} &= gTg^{-1} \\
+		\Rightarrow rg^{-1}Tgr^{-1} &= T.
+	\end{align*}
+	Therefore $gr^{-1} \in N_G(T)$. 
+
+	Fix a finite set $N \subset N_G(T)$ of coset representatives for the Weyl group $W = N_G(T)/T$ and let $n \in N, t \in T$ such that
+	\begin{align*}
+		gr^{-1} = nt.
+	\end{align*}
+	Let $q' = r^{-1}t^{-1}$ so $q' \in P$. Then
+	\begin{align*}
+		\rho_1(x) &= g^{-1} \rho_2(x) g\\
+		&= (q'n^{-1}) \rho_2(x) nq'^{-1},
+	\end{align*}
+	for all $x \in K$. Hence $\rho_1\in P\cdot(n^{-1}\cdot \rho_2)$.
+	This shows 
+	%\begin{align*}
+	%	R \cap \left(G\cdot \rho_2 \right) \subset \bigcup_{n \in N} P \cdot(n^{-1} \cdot \rho_2).
+	%\end{align*}
+	%
+	%That is,
+	that a $G$-conjugacy class of $R$ is contained in a union of at most $|N| = |W|$ $P$-conjugacy classes.
+
+	Therefore, if $R$ is contained in a finite union of $G$-conjugacy classes then it is contained in a finite union of $P$-conjugacy classes. 
+
+	The converse is trivial.
+\end{proof}
+
 We assume $G$ is a possibly non-connected algebraic group over $k$ and $H$ is a linear algebraic group over $k$.  We fix a maximal unipotent subgroup $U$ of $H$.
 %Recall the notion of R-parabolic subgroups and R-Levi subgroups of $G$ from [ref] when $G$ is reductive; note that if $G$ is connected then R-parabolic (resp.\ R-Levi) subgroups are just parabolic (Levi) subgroups in the usual sense [ref].
 
@@ -440,6 +489,143 @@ In this section we assume $G$ and $H$ are connected and semisimple.
 \section{1-cohomology}
 
 [Describe Daniel's approach using 1-cohomology.]
+
+Richardson introduces the nonabelian 1-cohomology in \cite{richardson1982orbits}, defined below.
+
+\begin{defn} We call a morphism $\sigma:K\rightarrow V$ a \emph{1-cocycle} if it satisfies
+\begin{align*}
+  \sigma(xy) = \sigma(x) (x\cdot\sigma(y)),
+  \label{eqn:na_z}
+\end{align*}
+for all $x, y \in K$. Denote by $Z^1\left( K, V \right)$ the collection of all 1-cocycles from $K$ to $V$, and $H^1(K, V)$ the set of equivalence classes of $Z^1(K, V)$ under the relation
+\begin{align*}
+\sigma_1 \sim \sigma_2 \Leftrightarrow \exists v \in V,\forall x \in K, \sigma_1(x) = v\sigma_2(x)(x \cdot v^{-1}).
+\end{align*}
+We call $H^1(K, V)$ the \emph{1-cohomology}.
+\end{defn}
+
+\begin{lem}
+  Suppose $K$ is linearly reductive and $V$ is unipotent. Then $H^1(K, V)$ is trivial. \cite[Lemma 6.2.6]{richardson1982orbits}.
+  \label{lem:nonab_lin_red}
+\end{lem}
+
+\begin{lem} \label{brown}
+Let $V$ be a vector space over $k$, $\mathrm{char}(k) = p$. Let $\Gamma$ be a finite group that acts linearly on $V$, and let $\Gamma_p$ be a \emph{Sylow $p$-subgroup} of $\Gamma$. Let $\zeta$ be the inclusion of $\Gamma_p$ in $\Gamma$. Then the map 
+\begin{align*}
+H^1(\zeta):H^1(\Gamma, V)\rightarrow H^1(\Gamma_p, V)
+\end{align*}
+is injective. \cite[III.10.4 Prop.]{brown1982cohomology}.
+\end{lem}
+
+
+\begin{ex} \label{ab_example} \textbf{TODO: replace $SL_2$ with $H$.}
+
+Let $k = \overline{\mathbb{F}_p} = \bigcup_{r\in \mathbb{N}} \mathbb{F}_{p^r}$.
+Let $V$ a be vector space over $k$ on which $SL_2(k)$ acts linearly, and let $U_2(k)$ be the subgroup of $SL_2(k)$ consisting of upper unitriangular matrices. Let $\zeta$ be the inclusion of $U_2(k)$ in $SL_2(k)$.
+
+Then the map
+	\begin{align}
+		H^1(\zeta): H^1(SL_2(k), V) \rightarrow H^1(U_2(k), V)
+	\end{align}
+	is injective.
+\label{eg:sl2ab}
+\end{ex}
+\begin{proof}
+	Let $r \in \mathbb{N}$ and denote the inclusion maps
+\begin{align*}
+	\zeta_r&:U_2(\mathbb{F}_{p^r}) \hookrightarrow SL_2(\mathbb{F}_{p^r}), \\
+	\iota_r&:SL_2(\mathbb{F}_{p^r}) \hookrightarrow SL_2(k), \\
+	\iota'_r&:U_2(\mathbb{F}_{p^r}) \hookrightarrow U_2(k).
+\end{align*}
+By Lemma \ref{h1maps} (Remark \ref{maps_functorial}) we get the following commutative diagram,
+\begin{align}\label{eqn:cd}
+	\xymatrix@C=40pt{
+		H^1(SL_2(k), V) \ar[r]^{H^1(\zeta)} \ar[d]_{H^1(\iota_r)} & H^1(U_2(k), V) \ar[d]^{H^1(\iota'_r)} \\
+		H^1(SL_2(\mathbb{F}_{p^r}), V)\, \ar[r]_{H^1(\zeta_r)} &\, H^1(U_2(\mathbb{F}_{p^r}), V).
+	}
+\end{align}
+
+It is elementary to show that $U(\mathbb{F}_{p^r})$ is a Sylow $p$-subgroup of $SL_2(\mathbb{F}_{p^r})$ (Appendix \ref{u_sylow}), so by Lemma \ref{brown}, $H^1(\zeta_r)$ is injective for all $r \in \mathbb{N}$.
+
+Let $\sigma\in Z^1(SL_2(k), V)$ such that $\sigma \notin B^1(SL_2(k), V)$, that is,
+\begin{align}\label{betanob1}
+	\sigma \neq \chi^{SL_2(k)}_v,
+\end{align}
+for any $v \in V$. For each $x\in SL_2(\mathbb{F}_{p^r})$ define the morphism $f_x:V\rightarrow V$ by
+	\begin{align*}
+		f_x(v) = \sigma(x) - \chi^{SL_2(k)}_v(x).
+	\end{align*}
+Since $\mathbb{F}_{p^{r!}} \subset \mathbb{F}_{p^{(r+1)!}}$ we have $SL_2(\mathbb{F}_{p^{r!}}) \subset SL_2(\mathbb{F}_{p^{(r+1)!}})$.
+Consider the sequence $\left\{C_{r}\right\}_{r \in \mathbb{N}}$ defined by
+	\begin{align*}
+		C_{r} = \{v \in V \,|\,\forall x\in SL_2(\mathbb{F}_{p^{r}}),\, f_x(v) = 0\}.
+	\end{align*}
+	Then
+\begin{align*}
+	\bigcap_{r\in \mathbb{N}}C_{r!} &= \{v \in V \,|\, \forall x \in SL_2(k),\, f_x(v) = 0\} \\
+		&= \emptyset \quad(\textrm{Equation \ref{betanob1}}).
+\end{align*}
+	Each $C_{r}$ is closed, and the inclusion $SL_2(\mathbb{F}_{p^{r!}}) \subset SL_2(\mathbb{F}_{p^{(r+1)!}})$ induces the reverse inclusion for the subsequence $C_{r!} \supset C_{(r+1)!}$.
+Then the Noetherian property for $V$ requires that the subsequence $\left\{C_{r!}\right\}_{r \in \mathbb{N}}$ becomes constant, and since $\cap_{r\in\mathbb{N}}C_{r!} = \emptyset$, the subsequence $\left\{C_{r!}\right\}_{r \in \mathbb{N}}$ is eventually empty.
+That is, there exists $s\in\mathbb{N}$ such that
+	\begin{align*}
+		Z^1(\iota_s)(\sigma) \neq \chi_v^{SL_2(\mathbb{F}_{p^{s}})},
+	\end{align*}
+	for any $v \in V$. We have shown that if $\sigma \in Z^1(SL_2(k), V)$ such that $Z^1(\iota_{r!})(\sigma) \in B^1(SL_2(\mathbb{F}_{p^{r!}}), V)$ for all $r \in \mathbb{N}$, then $\sigma \in B^1(SL_2(k), V)$.
+
+So, let $\sigma \in Z^1(SL_2(k), V)$ such that $\psi(\sigma) \in \mathrm{Ker}\left(H^1(\zeta)\right)$.
+Then, consulting the commutative diagram in Equation \ref{eqn:cd},
+\begin{align*}
+	&\psi(\sigma) \in \mathrm{Ker}\left(H^1(\iota'_r) \circ H^1(\zeta)\right), \forall r \in \mathbb{N} \\
+	\Rightarrow &\,\psi(\sigma) \in \mathrm{Ker}\left(H^1(\zeta_r) \circ H^1(\iota_r)\right), \forall r \in \mathbb{N}  \\
+	\Rightarrow &\,H^1(\iota_r)(\psi(\sigma)) \in \mathrm{Ker}\left(H^1(\zeta_r)\right), \forall r \in \mathbb{N}  \\
+	\Rightarrow &\,H^1(\iota_r)(\psi(\sigma))\textrm{ is trivial }, \forall r \in \mathbb{N} \\% \quad(\textrm{since }H^1(\zeta_r)\textrm{ is injective}) \\
+	\Rightarrow &\,Z^1(\iota_r)(\sigma) \in B^1(SL_2(\mathbb{F}_{p^r}), V), \forall r \in \mathbb{N}  \\
+	\Rightarrow &\,\sigma \in B^1(SL_2(k), V) \\ %\quad(\textrm{by (ii)}).
+	\Rightarrow &\,\psi(\sigma) \in H^1(SL_2(k), V) \textrm{ is trivial}.
+\end{align*}
+This shows $H^1(\zeta)$ is injective.
+\end{proof}
+
+\begin{lem}[Map of 1-Cohomologies] \label{h1maps} \textbf{TODO: be brief}
+
+Let $K', V'$ be algebraic groups such that $K'$ acts on $V'$ by group automorphisms.
+	Let $\zeta:K' \rightarrow K$ be a homomorphism and let $\xi: V \rightarrow V'$ be a $K'$-equivariant homomorphism; that is, suppose that $\xi(\zeta(x) \cdot v) = x \cdot \xi(v)$ for all $x \in K', v \in V$.
+
+	Then the function $Z^1(\zeta, \xi)$ defined by
+	\begin{align*}
+		Z^1(\zeta, \xi)(\sigma) = \xi \circ \sigma \circ \zeta,
+	\end{align*}
+	maps $Z^1(K, V)$ to $Z^1(K', V')$.
+
+	Furthermore, $Z^1(\zeta, \xi)$ descends to give a well-defined map
+	\begin{align*}
+		H^1(\zeta, \xi):H^1(K, V) \rightarrow H^1(K', V'),
+	\end{align*}
+	defined by
+	\begin{align*}
+		H^1(\zeta, \xi)(\psi(\sigma)) = \left(\psi' \circ Z^1(\zeta, \xi)\right)(\sigma),
+	\end{align*}
+	for all $\sigma \in Z^1(K, V)$, where $\psi'$ is the canonical projection from $Z^1(K', V')$ to $H^1(K', V')$.
+	Moreover, the following diagram commutes:
+	\begin{align*}
+		\xymatrix{
+			Z^1(K, V) \ar[r]^{Z^1(\zeta, \xi)} \ar[d]_{\psi} & Z^1(K', V') \ar[d]^{\psi'} \\
+			H^1(K, V) \ar[r]^{H^1(\zeta, \xi)}               & H^1(K', V').
+		}
+	\end{align*}
+\end{lem}
+
+\begin{defn} Let $\rho \in \mathrm{Hom}(K, P)$. We associate with $\rho$ the map $\rho^L \in \mathrm{Hom}(K, L)$ defined by
+%\begin{align*}
+$\rho^L = \pi^L \circ \rho.$
+%\end{align*}
+Furthermore, the map $\sigma_\rho: K \rightarrow V$ defined by
+\begin{align*}\label{rho:alpha}
+\sigma_\rho(x) = \rho(x)\rho^L(x^{-1}),
+\end{align*}
+is a 1-cocycle.
+\end{defn}
 
 [We've proved Theorem~\ref{thm:main} for reductive $G$ (it's enough to take $G$ to be connected and semisimple, since $H$ is connected and semisimple).  I think the theorem follows for arbitrary non-reductive $G$ by taking the result for the special case of reductive groups and applying it to the reductive group $G/V$, then using David Stewart's result that the restriction map $H^1(B,V)\ra H^1(U,V)$ is injective.  Here $V= R_u(G)$ and $B$ is a Borel subgroup of $G$ with unipotent radical $U$.]
 
