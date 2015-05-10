@@ -517,7 +517,6 @@ H^1(\zeta):H^1(\Gamma, V)\rightarrow H^1(\Gamma_p, V)
 is injective. \cite[III.10.4 Prop.]{brown1982cohomology}.
 \end{lem}
 
-
 \begin{ex} \label{ab_example} \textbf{TODO: replace $SL_2$ with $H$.}
 
 Let $k = \overline{\mathbb{F}_p} = \bigcup_{r\in \mathbb{N}} \mathbb{F}_{p^r}$.
@@ -616,16 +615,64 @@ Let $K', V'$ be algebraic groups such that $K'$ acts on $V'$ by group automorphi
 	\end{align*}
 \end{lem}
 
-\begin{defn} Let $\rho \in \mathrm{Hom}(K, P)$. We associate with $\rho$ the map $\rho^L \in \mathrm{Hom}(K, L)$ defined by
-%\begin{align*}
-$\rho^L = \pi^L \circ \rho.$
+\begin{defn} We associate with $\rho \in \mathrm{Hom}(K, P)$ 
+%the map $\rho^L \in \mathrm{Hom}(K, L)$ defined by
+%$\rho^L = \pi^L \circ \rho$ and
+the 1-cocycle $\sigma_\rho \in Z^1(K, V)$ defined by
+%\begin{align*}\label{rho:alpha}
+$\sigma_\rho(x) = \rho(x)\rho|_L(x^{-1})$.
 %\end{align*}
-Furthermore, the map $\sigma_\rho: K \rightarrow V$ defined by
-\begin{align*}\label{rho:alpha}
-\sigma_\rho(x) = \rho(x)\rho^L(x^{-1}),
-\end{align*}
-is a 1-cocycle.
 \end{defn}
+
+Let $\omega \in \mathrm{Hom}(K, L)$.
+
+\begin{defn}\label{h1sigma} We denote by
+%\begin{align*}
+$Z^1(K, V)_\omega$
+%\end{align*}
+the set of 1-cocycles from $K$ to $V$ where $K$ acts on $V$ via $\omega$.
+Likewise, denote by
+%\begin{align*}
+$H^1(K, V)_\omega$
+%\end{align*}
+the 1-cohomology obtained from $Z^1(K, V)_\omega$.
+%Denote by $\psi$ the canonical projection
+%\begin{align*} \psi : Z^1(K, V)_\omega \rightarrow H^1(K, V)_\omega. \end{align*}
+\end{defn} 
+
+\begin{defn} Define
+%\begin{align*}
+$\mathrm{Hom}(K, P)_\omega = \{ \rho \in \mathrm{Hom}(K, P) \,|\, \rho^L = \omega\}$.
+%\end{align*}
+More generally, if $R \subset \mathrm{Hom}(K, P)$ define
+%\begin{align*}
+$R_\omega = \{ \rho \in R \,|\, \rho^L = \omega \}$.
+%\end{align*}
+\end{defn}
+
+\begin{lem}
+  Let $\omega \in \mathrm{Hom}(K, L)$. The map
+\begin{align*} z: \mathrm{Hom}(K, P)_{\omega} \rightarrow Z^1(K, V)_\omega, \end{align*}
+defined by
+\begin{align*} z(\rho)(x) = \rho(x)\omega(x^{-1}), \end{align*}
+for all $\rho \in \mathrm{Hom}(K, P)_\omega$ and all $x \in K$, is a bijection.
+\label{lem:hom_z1}
+\end{lem}
+
+\begin{lem} \label{maph}
+For $\rho \in \mathrm{Hom}(K, P)_\omega$, define
+\begin{align*}
+h(\phi( \rho)) = \psi(z(\rho)).
+\end{align*}
+Then $h$ is a well-defined bijection from $\mathrm{Hom}(K, P)_\omega / V$ to $H^1(K, P)_\omega$. Moreover, the following diagram commutes:
+  \begin{align*}
+    \xymatrix{
+    \mathrm{Hom}(K, P)_{\omega} \ar[r]^z \ar[d]_\phi & Z^{1}(K, V)_\omega \ar[d]^\psi \\
+    \mathrm{Hom}(K, P)_{\omega}/V \ar[r]^h & H^{1}(K, V)_\omega.
+    }
+  \end{align*}
+  \label{lem:v_h1}
+\end{lem}
 
 [We've proved Theorem~\ref{thm:main} for reductive $G$ (it's enough to take $G$ to be connected and semisimple, since $H$ is connected and semisimple).  I think the theorem follows for arbitrary non-reductive $G$ by taking the result for the special case of reductive groups and applying it to the reductive group $G/V$, then using David Stewart's result that the restriction map $H^1(B,V)\ra H^1(U,V)$ is injective.  Here $V= R_u(G)$ and $B$ is a Borel subgroup of $G$ with unipotent radical $U$.]
 
