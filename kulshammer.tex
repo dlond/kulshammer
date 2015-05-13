@@ -509,6 +509,29 @@ We call $H^1(K, V)$ the \emph{1-cohomology}.
   \label{lem:nonab_lin_red}
 \end{lem}
 
+\begin{lem}[Map of 1-Cohomologies] \label{h1maps} Let $K', V'$ be algebraic groups such that $K'$ acts on $V'$ by group automorphisms.
+	Let $\zeta:K' \rightarrow K$ be a homomorphism and let $\xi: V \rightarrow V'$ be a $K'$-equivariant homomorphism.
+	% that is, suppose that $\xi(\zeta(x) \cdot v) = x \cdot \xi(v)$ for all $x \in K', v \in V$.
+	Then the function $Z^1(\zeta, \xi)$ defined by
+	\begin{align*}
+		Z^1(\zeta, \xi)(\sigma) = \xi \circ \sigma \circ \zeta,
+	\end{align*}
+	maps $Z^1(K, V)$ to $Z^1(K', V')$. Furthermore, $Z^1(\zeta, \xi)$ descends to give a unique map
+	\begin{align*}
+	H^1(\zeta, \xi):H^1(K,V)\rightarrow H^1(K',V'),
+	\end{align*}
+	that makes the following diagram commute:
+	\begin{align*}
+		\xymatrix{
+			%Z^1(K, V) \ar[r]^{Z^1(\zeta, \xi)} \ar[d] & Z^1(K', V') \ar[d] \\
+			Z^1(K, V) \ar[r] \ar[d] & Z^1(K', V') \ar[d] \\
+			H^1(K, V) \ar[r]        & H^1(K', V').
+		}
+	\end{align*}
+\end{lem}
+
+For our applications, it is often the case that $V=V'$ and $\xi=\mathrm{id}_V$. Then we just write $Z^1(\zeta)$ and $H^1(\zeta)$.
+
 \begin{lem} \label{brown}
 Let $V$ be a vector space over $k$, $\mathrm{char}(k) = p$. Let $\Gamma$ be a finite group that acts linearly on $V$, and let $\Gamma_p$ be a \emph{Sylow $p$-subgroup} of $\Gamma$. Let $\zeta$ be the inclusion of $\Gamma_p$ in $\Gamma$. Then the map 
 \begin{align*}
@@ -536,7 +559,8 @@ Then the map
 	\iota_r&:SL_2(\mathbb{F}_{p^r}) \hookrightarrow SL_2(k), \\
 	\iota'_r&:U_2(\mathbb{F}_{p^r}) \hookrightarrow U_2(k).
 \end{align*}
-By Lemma \ref{h1maps} (Remark \ref{maps_functorial}) we get the following commutative diagram,
+By Lemma \ref{h1maps} %(Remark \ref{maps_functorial})
+we get the following commutative diagram,
 \begin{align}\label{eqn:cd}
 	\xymatrix@C=40pt{
 		H^1(SL_2(k), V) \ar[r]^{H^1(\zeta)} \ar[d]_{H^1(\iota_r)} & H^1(U_2(k), V) \ar[d]^{H^1(\iota'_r)} \\
@@ -544,7 +568,7 @@ By Lemma \ref{h1maps} (Remark \ref{maps_functorial}) we get the following commut
 	}
 \end{align}
 
-It is elementary to show that $U(\mathbb{F}_{p^r})$ is a Sylow $p$-subgroup of $SL_2(\mathbb{F}_{p^r})$ (Appendix \ref{u_sylow}), so by Lemma \ref{brown}, $H^1(\zeta_r)$ is injective for all $r \in \mathbb{N}$.
+It is elementary to show that $U(\mathbb{F}_{p^r})$ is a Sylow $p$-subgroup of $SL_2(\mathbb{F}_{p^r})$, so by Lemma \ref{brown}, $H^1(\zeta_r)$ is injective for all $r \in \mathbb{N}$.
 
 Let $\sigma\in Z^1(SL_2(k), V)$ such that $\sigma \notin B^1(SL_2(k), V)$, that is,
 \begin{align}\label{betanob1}
@@ -586,51 +610,27 @@ Then, consulting the commutative diagram in Equation \ref{eqn:cd},
 This shows $H^1(\zeta)$ is injective.
 \end{proof}
 
-\begin{lem}[Map of 1-Cohomologies] \label{h1maps} \textbf{TODO: be brief}
-
-Let $K', V'$ be algebraic groups such that $K'$ acts on $V'$ by group automorphisms.
-	Let $\zeta:K' \rightarrow K$ be a homomorphism and let $\xi: V \rightarrow V'$ be a $K'$-equivariant homomorphism; that is, suppose that $\xi(\zeta(x) \cdot v) = x \cdot \xi(v)$ for all $x \in K', v \in V$.
-
-	Then the function $Z^1(\zeta, \xi)$ defined by
-	\begin{align*}
-		Z^1(\zeta, \xi)(\sigma) = \xi \circ \sigma \circ \zeta,
-	\end{align*}
-	maps $Z^1(K, V)$ to $Z^1(K', V')$.
-
-	Furthermore, $Z^1(\zeta, \xi)$ descends to give a well-defined map
-	\begin{align*}
-		H^1(\zeta, \xi):H^1(K, V) \rightarrow H^1(K', V'),
-	\end{align*}
-	defined by
-	\begin{align*}
-		H^1(\zeta, \xi)(\psi(\sigma)) = \left(\psi' \circ Z^1(\zeta, \xi)\right)(\sigma),
-	\end{align*}
-	for all $\sigma \in Z^1(K, V)$, where $\psi'$ is the canonical projection from $Z^1(K', V')$ to $H^1(K', V')$.
-	Moreover, the following diagram commutes:
-	\begin{align*}
-		\xymatrix{
-			Z^1(K, V) \ar[r]^{Z^1(\zeta, \xi)} \ar[d]_{\psi} & Z^1(K', V') \ar[d]^{\psi'} \\
-			H^1(K, V) \ar[r]^{H^1(\zeta, \xi)}               & H^1(K', V').
-		}
-	\end{align*}
-\end{lem}
-
-\begin{defn} We associate with $\rho \in \mathrm{Hom}(K, P)$ 
-%the map $\rho^L \in \mathrm{Hom}(K, L)$ defined by
-%$\rho^L = \pi^L \circ \rho$ and
-the 1-cocycle $\sigma_\rho \in Z^1(K, V)$ defined by
+\begin{defn} Let $\rho \in \mathrm{Hom}(K, P)$. We associate with $\rho$ the map $\rho^L \in \mathrm{Hom}(K, L)$ defined by
+%\begin{align*}
+%$\rho^L = \pi^L \circ \rho$,
+$\rho^L = \rho|_L$,
+%\end{align*}
+and the 1-cocycle $\sigma_\rho \in Z^1(K, V)$ defined by
 %\begin{align*}\label{rho:alpha}
-$\sigma_\rho(x) = \rho(x)\rho|_L(x^{-1})$.
+$\sigma_\rho(x) = \rho(x)\rho^L(x^{-1})$.
 %\end{align*}
 \end{defn}
 
-Let $\omega \in \mathrm{Hom}(K, L)$.
 
-\begin{defn}\label{h1sigma} We denote by
+
+\begin{defn}\label{h1sigma} Let $\omega \in \mathrm{Hom}(K, L)$. We denote by
 %\begin{align*}
 $Z^1(K, V)_\omega$
 %\end{align*}
-the set of 1-cocycles from $K$ to $V$ where $K$ acts on $V$ via $\omega$.
+the set of 1-cocycles from $K$ to $V$ where $K$ acts on $V$ via $\omega$;
+%\begin{align*}
+that is, $x \cdot v = \omega(x) \cdot v$.
+%\end{align*}
 Likewise, denote by
 %\begin{align*}
 $H^1(K, V)_\omega$
@@ -638,9 +638,10 @@ $H^1(K, V)_\omega$
 the 1-cohomology obtained from $Z^1(K, V)_\omega$.
 %Denote by $\psi$ the canonical projection
 %\begin{align*} \psi : Z^1(K, V)_\omega \rightarrow H^1(K, V)_\omega. \end{align*}
-\end{defn} 
+%\end{defn} 
 
-\begin{defn} Define
+%\begin{defn} 
+Define
 %\begin{align*}
 $\mathrm{Hom}(K, P)_\omega = \{ \rho \in \mathrm{Hom}(K, P) \,|\, \rho^L = \omega\}$.
 %\end{align*}
@@ -652,27 +653,190 @@ $R_\omega = \{ \rho \in R \,|\, \rho^L = \omega \}$.
 
 \begin{lem}
   Let $\omega \in \mathrm{Hom}(K, L)$. The map
-\begin{align*} z: \mathrm{Hom}(K, P)_{\omega} \rightarrow Z^1(K, V)_\omega, \end{align*}
+%\begin{align*} 
+$z: \mathrm{Hom}(K, P)_{\omega} \rightarrow Z^1(K, V)_\omega$
+%\end{align*}
 defined by
 \begin{align*} z(\rho)(x) = \rho(x)\omega(x^{-1}), \end{align*}
 for all $\rho \in \mathrm{Hom}(K, P)_\omega$ and all $x \in K$, is a bijection.
 \label{lem:hom_z1}
-\end{lem}
-
-\begin{lem} \label{maph}
-For $\rho \in \mathrm{Hom}(K, P)_\omega$, define
-\begin{align*}
-h(\phi( \rho)) = \psi(z(\rho)).
-\end{align*}
-Then $h$ is a well-defined bijection from $\mathrm{Hom}(K, P)_\omega / V$ to $H^1(K, P)_\omega$. Moreover, the following diagram commutes:
+%\end{lem}
+%
+%\begin{lem} \label{maph}
+%For $\rho \in \mathrm{Hom}(K, P)_\omega$, define
+%\begin{align*}
+%$h(\phi( \rho)) = \psi(z(\rho))$.
+%\end{align*}
+Furthermore, $z$ descends to a bijection $h:\mathrm{Hom}(K, P)_\omega / V \rightarrow H^1(K, V)_\omega$ that makes the following diagram commute:
   \begin{align*}
     \xymatrix{
-    \mathrm{Hom}(K, P)_{\omega} \ar[r]^z \ar[d]_\phi & Z^{1}(K, V)_\omega \ar[d]^\psi \\
-    \mathrm{Hom}(K, P)_{\omega}/V \ar[r]^h & H^{1}(K, V)_\omega.
+    \mathrm{Hom}(K, P)_{\omega}   \ar[r] \ar[d] & Z^{1}(K, V)_\omega \ar[d] \\
+    \mathrm{Hom}(K, P)_{\omega}/V \ar[r]        & H^{1}(K, V)_\omega.
     }
   \end{align*}
   \label{lem:v_h1}
 \end{lem}
+
+Since $C_L\left(\omega(K)\right)$ normalizes $V$, $C_L\left(\omega(K)\right)$ acts on $\mathrm{Hom}(K, P)_\omega/V$.
+Notice that
+%\begin{align*}
+
+$\left(\mathrm{Hom}(K, P)_\omega/V\right)/C_L\left(\omega(K)\right)$,
+%\end{align*}
+is canonically isomorphic to
+%\begin{align*}
+$\mathrm{Hom}(K, P)_\omega/VC_L\left(\omega(K)\right)$.
+%\end{align*}
+Let $\zeta=\mathrm{id}_K$ and $\xi_c:V\rightarrow V$ be defined $\xi_c(v) = cvc^{-1}$ for all $v\in V$. We have an action of $C_L(\omega(K))$ on $H^1(K, V)_\omega$ defined by
+\begin{align*} \label{cl.h1}
+	c \cdot \bar{\sigma}
+	&= H^1(\zeta, \xi_c)\left(\bar{\sigma}\right), 
+\end{align*}
+for $c \in C_L(\omega(K)), \bar{\sigma} \in H^1(K, V)_\omega$.
+
+It is easy to check that the map 
+$h:\mathrm{Hom}(K, P)_\omega/V\rightarrow H^1(K, v)_\omega$
+in Lemma~\ref{lem:hom_z1} is equivariant, so there exists a unique map $\tilde{h}:\mathrm{Hom}(K, P)_{\omega}/VC_L(\omega) \rightarrow H^{1}(K, V)_\omega/C_L(\omega)$ such that the following diagram commutes:
+
+\begin{align*}
+\xymatrix{
+\mathrm{Hom}(K, P)_{\omega}/V \ar[r]     \ar[d] & H^{1}(K, V)_\omega \ar[d] \\
+\mathrm{Hom}(K, P)_{\omega}/VC_L(\omega) \ar[r] & H^{1}(K, V)_\omega/C_L(\omega).
+}
+\end{align*}
+
+\begin{defn} Let $K' < K$, let $\zeta$ the inclusion of $K'$ in $K$, and let $\xi=\mathrm{id}_V$. Then the map $H^1(\zeta):H^1(K, V)_\omega \rightarrow H^1(K', V)_{\omega\circ\zeta}$ descends to give a unique map
+\begin{align*}
+	H^1(K, V)_\omega/C_L(\omega) \rightarrow H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ \zeta),
+\end{align*}
+such that the following diagram commutes:
+\begin{align*}
+    \xymatrix@C=60pt{
+		H^1(K, V)_\omega \ar[r] \ar[d]      & H^1(K', V)_{\omega\circ\zeta} \ar[d] \\
+		H^1(K, V)_\omega/C_L(\omega) \ar[r] & {H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta)}.
+    }
+  \end{align*}
+\end{defn}
+
+\begin{defn} We define
+%\begin{align*}
+$\mathrm{Hom}(K, P)^L = \{\rho^L\,|\,\rho \in \mathrm{Hom}(K, P)\}$.
+%\end{align*}
+More generally, when $R \subset \mathrm{Hom}(K, P)$ we define
+%\begin{align*}
+$R^L = \{\rho^L\,|\,\rho \in R\}$.
+%\end{align*}
+\end{defn}
+
+\begin{lem} \label{pr:lrl} Let $R \subset \mathrm{Hom}(K, P)$. Suppose $R = P \cdot \rho$ for some $\rho \in R$. Then $R^L = L\cdot \rho^L$.
+	More generally, if $R = P \cdot R$ then $R^L = L \cdot R^L$.
+\end{lem}
+
+\begin{lem} \label{rsigma:vcl} Let $R \subset \mathrm{Hom}(K, P)$ and suppose that $R = P \cdot R$. Then for all $\omega \in \mathrm{Hom}(K, L)$, all $\rho\in R_\omega$,
+%\begin{align*}
+$R_\omega \cap P \cdot \rho = \left(VC_L(\omega)\right) \cdot \rho$.
+%\end{align*}
+\end{lem}
+
+\begin{thm}\label{r:finite_p} Let $\Phi$ be the composition of the canonical projections $\mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K, P)_\omega/V$ and $\mathrm{Hom}(K, P)_\omega/V \rightarrow \mathrm{Hom}(K, P)_\omega/VC_L(\omega)$. Let $R \subset \mathrm{Hom}(K, P)$ and suppose $P \cdot R = R$. Then $R$ is a finite union of $P$-conjugacy classes if and only if
+\begin{itemize}
+\item[(i)] $R^L$ is a finite union of $L$-conjugacy classes, and
+\item[(ii)] for each $\omega \in \mathrm{Hom}(K, L)$, $(\tilde{h} \circ \Phi)(R_\omega)$ is finite in $H^1(K, V)_\omega/C_L(\omega)$.
+\end{itemize}
+\end{thm}
+\begin{Rem} By Lemma \ref{pr:lrl}, if $R$ is a finite union of $P$-conjugacy classes then $R^L$ is a finite union of $L$-conjugacy classes. Furthermore, conditions (i) and (ii) are equivalent to 
+\begin{itemize}
+\item[(i$'$)] $R_\omega = \emptyset$ for all but finitely many $L$-conjugacy classes of $\omega \in \mathrm{Hom}(K, L)$, and
+\item[(ii$'$)] for each $\omega \in \mathrm{Hom}(\Gamma, L)$, $R_\omega$ is a finite union of $VC_L(\omega)$-conjugacy classes,
+\end{itemize}
+respectively. We obtain (ii) $\Leftrightarrow$ (ii$'$) by appealing to the bijection $\tilde{h}$, while (i) $\Leftrightarrow$ (i$'$) is self-evident.
+\end{Rem}
+
+\begin{defn} \label{main_cd} Let $K' < K$ and let $\zeta$ be the inclusion of $K'$ in $K$. Define the maps
+\begin{align*}
+\mathcal{Z}(\zeta):&\mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}, \\
+\mathcal{H}(\zeta):&\mathrm{Hom}(K, P)_\omega/V \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}/V, \\
+\tilde{\mathcal{H}}(\zeta):&\mathrm{Hom}(K, P)_\omega/VC_L(\omega) \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}/VC_L(\omega\circ\zeta),
+\end{align*}
+by
+\begin{align*}
+\mathcal{Z}(\zeta)(\rho) &= \rho\circ\zeta, \\
+\mathcal{H}(\zeta)(\phi(\rho)) &= \phi'(\rho\circ\zeta), \\
+\tilde{\mathcal{H}}(\zeta)(\Phi(\rho)) &= \Phi'(\rho\circ\zeta).
+\end{align*}
+\end{defn}
+
+\begin{prop} The following diagram commutes:
+\par\nobreak
+{\small
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{\abovedisplayskip}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{\abovedisplayshortskip}
+\begin{align*}
+\xymatrix@R=40pt{
+\mathrm{Hom}(K, P)_\omega \ar[r]^{z} \ar[d] \ar[dddr]^{\mathcal{Z}(\zeta)} & Z^1(K, V)_\omega \ar[d] \ar[dddr]^{Z^1(\zeta)} & \\
+\mathrm{Hom}(K, P)_\omega/V \ar[r]^{h} \ar[d] \ar[dddr]^{\mathcal{H}(\zeta)} & H^1(K, P)_\omega \ar[d] \ar[dddr]^{H^1(\zeta)} & \\
+\mathrm{Hom}(K, P)_\omega/VC_L(\omega) \ar[r]^{\tilde{h}} \ar[dddr]^{\tilde{\mathcal{H}}(\zeta)} & H^1(K, P)_\omega/C_L(\omega) \ar[dddr]^{\tilde{H^1}(\zeta)} & \\
+& \mathrm{Hom}(K', P)_{\omega\circ\zeta} \ar[r]^{z'} \ar[d] & Z^1(K', V)_{\omega\circ\zeta} \ar[d] \\
+& \mathrm{Hom}(K', P)_{\omega\circ\zeta}/V \ar[r]^{h'} \ar[d] & H^1(K', V)_{\omega\circ\zeta} \ar[d] \\
+& \mathrm{Hom}(K', P)_{\omega\circ\zeta}/VC_L(\omega\circ\zeta) \ar[r]^{\tilde{h'}} & H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta) \\
+}
+\end{align*}
+}%
+\end{prop}
+
+\begin{thm}\label{main_thm} Let $K'<K$, let $\zeta$ be the inclusion of $K'$ in $K$, and let $\xi=\mathrm{id}_V$. Let $R \subset \mathrm{Hom}(K, P)$ such that $R = P \cdot R$, and let $S = \mathcal{Z}(\zeta)(R)$. Suppose
+\begin{itemize}
+\item[(i)] $R^L$ is a finite union of $L$-conjugacy classes,
+\item[(ii)] for all $\omega \in \mathrm{Hom}(K, L)$ such that $R_\omega \neq \emptyset$, the map
+\begin{align*}
+	\tilde{H^1}(\zeta):H^1(K, V)_\omega/C_L(\omega) \rightarrow H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta),
+\end{align*}
+has finite fibres, and
+\item[(iii)] $S$ is a finite union of $P$-conjugacy classes.
+\end{itemize}
+Then $R$ is a finite union of $P$-conjugacy classes.
+\end{thm}
+\begin{Rem}
+Since $R = P \cdot R$, then by Lemma \ref{pr:lrl} $R^L$ is already a union of $L$-conjugacy classes. The point of (i) is that the union is finite.
+\end{Rem}
+\begin{proof}
+Since $P \cdot R = R$, it follows that $P\cdot S = S$. By definition $S \subset \mathrm{Hom}(K', V)$ and by (iii) $S$ is a finite union of $P$-conjugacy classes. Therefore by Theorem \ref{r:finite_p}
+\begin{itemize}
+\item[(iv)] $S^L$ is a finite union of $L$-conjugacy classes, and
+\item[(v)] for each $\omega \in \mathrm{Hom}(K', L)$, $(\widetilde{h'} \circ \Phi')\left(S_\omega\right)$ is finite in $H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta)$.
+\end{itemize}
+
+Let $\omega \in \mathrm{Hom}(K, L)$. Clearly $(\widetilde{h} \circ \Phi)\left(R_\omega\right)$ is finite if $R_\omega = \emptyset$, so suppose $R_\omega \neq \emptyset$. 
+
+We have $\mathcal{Z}(\zeta)(R_\omega) \subset S_{\omega\circ\zeta}$, and by the commutative diagram in Definition \ref{main_cd},
+\begin{align*}
+\widetilde{h'} \circ \Phi' \circ \mathcal{Z}(\zeta) = \widetilde{H^1}(\zeta) \circ \widetilde{h} \circ \Phi.
+\end{align*}
+Therefore
+\begin{align*}
+\left(\widetilde{H^1}(\zeta) \circ \widetilde{h} \circ \Phi\right)(R_\omega) &= \left(\widetilde{h'} \circ \Phi' \circ \mathcal{Z}(\zeta)\right)(R_\omega) \\
+&= (\widetilde{h'} \circ \Phi')\left(\mathcal{Z}(\zeta)(R_\omega)\right) \\
+&\subset (\widetilde{h'} \circ \Phi')(S_{\omega\circ\zeta}).
+\end{align*}
+Then $\left(\widetilde{h'} \circ \Phi'\right)(S_{\omega\circ\zeta})$ is finite by (v), and
+\begin{align*}
+(\widetilde{h} \circ \Phi)(R_\omega) \subset \widetilde{H^1}(\zeta)^{-1} \left(\left(\widetilde{H^1}(\zeta) \circ \widetilde{h} \circ \Phi\right)(R_\omega)\right),
+\end{align*}
+is finite by (ii).
+
+Therefore $(\widetilde{h} \circ \Phi)(R_\omega)$ is finite in any case. Together with (i) we may apply Theorem \ref{r:finite_p}, so $R$ is a finite union of $P$-conjugacy classes.
+\end{proof}
+
+\begin{Rem}
+It is straightforward to show that 
+$H^1(K, V)_\omega/C_L(\omega)$
+is finite if and only if
+\newline
+$H^1(K, V)_w/C_L(\omega)^\circ$
+is finite.
+\end{Rem}
 
 [We've proved Theorem~\ref{thm:main} for reductive $G$ (it's enough to take $G$ to be connected and semisimple, since $H$ is connected and semisimple).  I think the theorem follows for arbitrary non-reductive $G$ by taking the result for the special case of reductive groups and applying it to the reductive group $G/V$, then using David Stewart's result that the restriction map $H^1(B,V)\ra H^1(U,V)$ is injective.  Here $V= R_u(G)$ and $B$ is a Borel subgroup of $G$ with unipotent radical $U$.]
 
