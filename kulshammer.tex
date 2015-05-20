@@ -490,7 +490,7 @@ In this section we assume $G$ and $H$ are connected and semisimple.
 
 [Describe Daniel's approach using 1-cohomology.]
 
-Richardson introduces the nonabelian 1-cohomology in \cite{richardson1982orbits}, defined below.
+We recall Richardson's nonabelian 1-cohomology (\cite{richardson1982orbits}) below.
 
 \begin{defn} We call a morphism $\sigma:K\rightarrow V$ a \emph{1-cocycle} if it satisfies
 \begin{align*}
@@ -523,9 +523,8 @@ We call $H^1(K, V)$ the \emph{1-cohomology}.
 	that makes the following diagram commute:
 	\begin{align*}
 		\xymatrix{
-			%Z^1(K, V) \ar[r]^{Z^1(\zeta, \xi)} \ar[d] & Z^1(K', V') \ar[d] \\
-			Z^1(K, V) \ar[r] \ar[d] & Z^1(K', V') \ar[d] \\
-			H^1(K, V) \ar[r]        & H^1(K', V').
+			Z^1(K, V) \ar[r]^{Z^1(\zeta, \xi)} \ar[d] & Z^1(K', V') \ar[d] \\
+			H^1(K, V) \ar[r]^{H^1(\zeta, \xi)}        & H^1(K', V').
 		}
 	\end{align*}
 \end{lem}
@@ -564,7 +563,7 @@ we get the following commutative diagram,
 \begin{align}\label{eqn:cd}
 	\xymatrix@C=40pt{
 		H^1(SL_2(k), V) \ar[r]^{H^1(\zeta)} \ar[d]_{H^1(\iota_r)} & H^1(U_2(k), V) \ar[d]^{H^1(\iota'_r)} \\
-		H^1(SL_2(\mathbb{F}_{p^r}), V)\, \ar[r]_{H^1(\zeta_r)} &\, H^1(U_2(\mathbb{F}_{p^r}), V).
+		H^1(SL_2(\mathbb{F}_{p^r}), V)\, \ar[r]^{H^1(\zeta_r)} &\, H^1(U_2(\mathbb{F}_{p^r}), V).
 	}
 \end{align}
 
@@ -670,8 +669,8 @@ for all $\rho \in \mathrm{Hom}(K, P)_\omega$ and all $x \in K$, is a bijection.
 Furthermore, $z$ descends to a bijection $h:\mathrm{Hom}(K, P)_\omega / V \rightarrow H^1(K, V)_\omega$ that makes the following diagram commute:
   \begin{align*}
     \xymatrix{
-    \mathrm{Hom}(K, P)_{\omega}   \ar[r] \ar[d] & Z^{1}(K, V)_\omega \ar[d] \\
-    \mathrm{Hom}(K, P)_{\omega}/V \ar[r]        & H^{1}(K, V)_\omega.
+    \mathrm{Hom}(K, P)_{\omega}   \ar[r]^z \ar[d] & Z^{1}(K, V)_\omega \ar[d] \\
+    \mathrm{Hom}(K, P)_{\omega}/V \ar[r]^h        & H^{1}(K, V)_\omega.
     }
   \end{align*}
   \label{lem:v_h1}
@@ -700,20 +699,20 @@ in Lemma~\ref{lem:hom_z1} is equivariant, so there exists a unique map $\tilde{h
 
 \begin{align*}
 \xymatrix{
-\mathrm{Hom}(K, P)_{\omega}/V \ar[r]     \ar[d] & H^{1}(K, V)_\omega \ar[d] \\
-\mathrm{Hom}(K, P)_{\omega}/VC_L(\omega) \ar[r] & H^{1}(K, V)_\omega/C_L(\omega).
+\mathrm{Hom}(K, P)_{\omega}/V            \ar[r]^h \ar[d]  & H^{1}(K, V)_\omega \ar[d] \\
+\mathrm{Hom}(K, P)_{\omega}/VC_L(\omega) \ar[r]^{\tilde{h}} & H^{1}(K, V)_\omega/C_L(\omega).
 }
 \end{align*}
 
 \begin{defn} Let $K' < K$, let $\zeta$ the inclusion of $K'$ in $K$, and let $\xi=\mathrm{id}_V$. Then the map $H^1(\zeta):H^1(K, V)_\omega \rightarrow H^1(K', V)_{\omega\circ\zeta}$ descends to give a unique map
 \begin{align*}
-	H^1(K, V)_\omega/C_L(\omega) \rightarrow H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ \zeta),
+	\tilde{H}^1(\zeta):H^1(K, V)_\omega/C_L(\omega) \rightarrow H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ \zeta),
 \end{align*}
 such that the following diagram commutes:
 \begin{align*}
     \xymatrix@C=60pt{
-		H^1(K, V)_\omega \ar[r] \ar[d]      & H^1(K', V)_{\omega\circ\zeta} \ar[d] \\
-		H^1(K, V)_\omega/C_L(\omega) \ar[r] & {H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta)}.
+		H^1(K, V)_\omega \ar[r]^{H^1(\zeta)} \ar[d]      & H^1(K', V)_{\omega\circ\zeta} \ar[d] \\
+		H^1(K, V)_\omega/C_L(\omega) \ar[r]^{\tilde{H}^1(\zeta)} & {H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta)}.
     }
   \end{align*}
 \end{defn}
@@ -738,10 +737,10 @@ $R_\omega \cap P \cdot \rho = \left(VC_L(\omega)\right) \cdot \rho$.
 %\end{align*}
 \end{lem}
 
-\begin{thm}\label{r:finite_p} Let $\Phi$ be the composition of the canonical projections $\mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K, P)_\omega/V$ and $\mathrm{Hom}(K, P)_\omega/V \rightarrow \mathrm{Hom}(K, P)_\omega/VC_L(\omega)$. Let $R \subset \mathrm{Hom}(K, P)$ and suppose $P \cdot R = R$. Then $R$ is a finite union of $P$-conjugacy classes if and only if
+\begin{thm}\label{r:finite_p} Let $\pi$ be the canonical projection $\mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K, P)_\omega/VC_L(\omega)$. Let $R \subset \mathrm{Hom}(K, P)$ and suppose $P \cdot R = R$. Then $R$ is a finite union of $P$-conjugacy classes if and only if
 \begin{itemize}
 \item[(i)] $R^L$ is a finite union of $L$-conjugacy classes, and
-\item[(ii)] for each $\omega \in \mathrm{Hom}(K, L)$, $(\tilde{h} \circ \Phi)(R_\omega)$ is finite in $H^1(K, V)_\omega/C_L(\omega)$.
+\item[(ii)] for each $\omega \in \mathrm{Hom}(K, L)$, $(\tilde{h} \circ \pi)(R_\omega)$ is finite in $H^1(K, V)_\omega/C_L(\omega)$.
 \end{itemize}
 \end{thm}
 \begin{Rem} By Lemma \ref{pr:lrl}, if $R$ is a finite union of $P$-conjugacy classes then $R^L$ is a finite union of $L$-conjugacy classes. Furthermore, conditions (i) and (ii) are equivalent to 
@@ -749,20 +748,28 @@ $R_\omega \cap P \cdot \rho = \left(VC_L(\omega)\right) \cdot \rho$.
 \item[(i$'$)] $R_\omega = \emptyset$ for all but finitely many $L$-conjugacy classes of $\omega \in \mathrm{Hom}(K, L)$, and
 \item[(ii$'$)] for each $\omega \in \mathrm{Hom}(\Gamma, L)$, $R_\omega$ is a finite union of $VC_L(\omega)$-conjugacy classes,
 \end{itemize}
-respectively. We obtain (ii) $\Leftrightarrow$ (ii$'$) by appealing to the bijection $\tilde{h}$, while (i) $\Leftrightarrow$ (i$'$) is self-evident.
+respectively.
+% We obtain (ii) $\Leftrightarrow$ (ii$'$) by appealing to the bijection $\tilde{h}$, while (i) $\Leftrightarrow$ (i$'$) is self-evident.
 \end{Rem}
 
-\begin{defn} \label{main_cd} Let $K' < K$ and let $\zeta$ be the inclusion of $K'$ in $K$. Define the maps
+\begin{defn} \label{main_cd} Let $K' < K$ and let $\zeta$ be the inclusion of $K'$ in $K$. Define
 \begin{align*}
-\mathcal{Z}(\zeta):&\mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}, \\
-\mathcal{H}(\zeta):&\mathrm{Hom}(K, P)_\omega/V \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}/V, \\
-\tilde{\mathcal{H}}(\zeta):&\mathrm{Hom}(K, P)_\omega/VC_L(\omega) \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}/VC_L(\omega\circ\zeta),
+\mathcal{Z}(\zeta):\mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta},
 \end{align*}
 by
+%\begin{align*}
+$\mathcal{Z}(\zeta)(\rho) = \rho\circ\zeta$,
+%\end{align*}
+for all $\rho$ in $\mathrm{Hom}(K, P)_\omega$.
+Furthermore, define
 \begin{align*}
-\mathcal{Z}(\zeta)(\rho) &= \rho\circ\zeta, \\
-\mathcal{H}(\zeta)(\phi(\rho)) &= \phi'(\rho\circ\zeta), \\
-\tilde{\mathcal{H}}(\zeta)(\Phi(\rho)) &= \Phi'(\rho\circ\zeta).
+\mathcal{H}(\zeta)&:\mathrm{Hom}(K, P)_\omega/V \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}/V, \\
+\tilde{\mathcal{H}}(\zeta)&:\mathrm{Hom}(K, P)_\omega/VC_L(\omega) \rightarrow \mathrm{Hom}(K', P)_{\omega\circ\zeta}/VC_L(\omega\circ\zeta),
+\end{align*}
+by composing the image of a representative in $\mathrm{Hom}(K, P)_\omega$ under $\mathcal{Z}(\zeta)$ with the respective canonical projections
+\begin{align*}
+&\mathrm{Hom}(K',P)_{\omega\circ\zeta} \rightarrow \mathrm{Hom}(K',P)_{\omega\circ\zeta}/V, \\
+&\mathrm{Hom}(K',P)_{\omega\circ\zeta} \rightarrow \mathrm{Hom}(K',P)_{\omega\circ\zeta}/VC_L(\omega\circ\zeta).
 \end{align*}
 \end{defn}
 
@@ -802,31 +809,36 @@ Then $R$ is a finite union of $P$-conjugacy classes.
 Since $R = P \cdot R$, then by Lemma \ref{pr:lrl} $R^L$ is already a union of $L$-conjugacy classes. The point of (i) is that the union is finite.
 \end{Rem}
 \begin{proof}
-Since $P \cdot R = R$, it follows that $P\cdot S = S$. By definition $S \subset \mathrm{Hom}(K', V)$ and by (iii) $S$ is a finite union of $P$-conjugacy classes. Therefore by Theorem \ref{r:finite_p}
+Since $P \cdot R = R$, it follows that $P\cdot S = S$. By definition $S \subset \mathrm{Hom}(K', V)$ and by (iii) $S$ is a finite union of $P$-conjugacy classes. Define the canonical projections
+\begin{align*}
+	\pi&: \mathrm{Hom}(K, P)_\omega \rightarrow \mathrm{Hom}(K, P)_\omega/VC_L(\omega) \\
+	\pi'&: \mathrm{Hom}(K', P)_\omega \rightarrow \mathrm{Hom}(K', P)_\omega/VC_L(\omega).
+\end{align*}
+By Theorem \ref{r:finite_p}
 \begin{itemize}
 \item[(iv)] $S^L$ is a finite union of $L$-conjugacy classes, and
-\item[(v)] for each $\omega \in \mathrm{Hom}(K', L)$, $(\widetilde{h'} \circ \Phi')\left(S_\omega\right)$ is finite in $H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta)$.
+\item[(v)] for each $\omega \in \mathrm{Hom}(K', L)$, $(\tilde{h'} \circ \pi')\left(S_\omega\right)$ is finite in $H^1(K', V)_{\omega\circ\zeta}/C_L(\omega\circ\zeta)$.
 \end{itemize}
 
-Let $\omega \in \mathrm{Hom}(K, L)$. Clearly $(\widetilde{h} \circ \Phi)\left(R_\omega\right)$ is finite if $R_\omega = \emptyset$, so suppose $R_\omega \neq \emptyset$. 
+Let $\omega \in \mathrm{Hom}(K, L)$. Clearly $(\tilde{h} \circ \pi)\left(R_\omega\right)$ is finite if $R_\omega = \emptyset$, so suppose $R_\omega \neq \emptyset$. 
 
 We have $\mathcal{Z}(\zeta)(R_\omega) \subset S_{\omega\circ\zeta}$, and by the commutative diagram in Definition \ref{main_cd},
 \begin{align*}
-\widetilde{h'} \circ \Phi' \circ \mathcal{Z}(\zeta) = \widetilde{H^1}(\zeta) \circ \widetilde{h} \circ \Phi.
+\tilde{h'} \circ \pi' \circ \mathcal{Z}(\zeta) = \tilde{H^1}(\zeta) \circ \tilde{h} \circ \pi.
 \end{align*}
 Therefore
 \begin{align*}
-\left(\widetilde{H^1}(\zeta) \circ \widetilde{h} \circ \Phi\right)(R_\omega) &= \left(\widetilde{h'} \circ \Phi' \circ \mathcal{Z}(\zeta)\right)(R_\omega) \\
-&= (\widetilde{h'} \circ \Phi')\left(\mathcal{Z}(\zeta)(R_\omega)\right) \\
-&\subset (\widetilde{h'} \circ \Phi')(S_{\omega\circ\zeta}).
+(\tilde{H^1}(\zeta) \circ \tilde{h} \circ \pi)(R_\omega) &= (\tilde{h'} \circ \pi' \circ \mathcal{Z}(\zeta) )(R_\omega) \\
+&= (\tilde{h'} \circ \pi')\left(\mathcal{Z}(\zeta)(R_\omega)\right) \\
+&\subset (\tilde{h'} \circ \pi')(S_{\omega\circ\zeta}).
 \end{align*}
-Then $\left(\widetilde{h'} \circ \Phi'\right)(S_{\omega\circ\zeta})$ is finite by (v), and
+Then $(\tilde{h'} \circ \pi')(S_{\omega\circ\zeta})$ is finite by (v), and
 \begin{align*}
-(\widetilde{h} \circ \Phi)(R_\omega) \subset \widetilde{H^1}(\zeta)^{-1} \left(\left(\widetilde{H^1}(\zeta) \circ \widetilde{h} \circ \Phi\right)(R_\omega)\right),
+(\tilde{h} \circ \pi)(R_\omega) \subset \tilde{H^1}(\zeta)^{-1} ( (\tilde{H^1}(\zeta) \circ \tilde{h} \circ \pi)(R_\omega) ),
 \end{align*}
 is finite by (ii).
 
-Therefore $(\widetilde{h} \circ \Phi)(R_\omega)$ is finite in any case. Together with (i) we may apply Theorem \ref{r:finite_p}, so $R$ is a finite union of $P$-conjugacy classes.
+Therefore $(\tilde{h} \circ \pi)(R_\omega)$ is finite in any case. Together with (i) we may apply Theorem \ref{r:finite_p}, so $R$ is a finite union of $P$-conjugacy classes.
 \end{proof}
 
 \begin{Rem}
@@ -842,11 +854,13 @@ is finite.
 
 [An application:
 
-Theorem: Let $G$ be a reductive group such that the simple components of $G$ are all of type $A_n$ or $B_2$.  Then the answer to K's question is yes for any $H$ with $H^0$ semisimple.
+\begin{thm} Let $G$ be a reductive group such that the simple components of $G$ are all of type $A_n$ or $B_2$.  Then the answer to K's question is yes for any $H$ with $H^0$ semisimple.
+\end{thm}
 
-Proof (sketch): We can approximate $H$ with a sufficiently large finite subgroup, so assume without loss that $H$ is finite.  It's enough to study the simple components of $G$ separately, so without loss we assume $G$ is simple.  If $G$ is of type $B_2$ and $p\neq 2$ then we're done by Slodowy's paper, so without loss we assume that either $G$ is of type $A_n$, or $G$ is of type $B_2$ and $p= 2$.  Note that maximal parabolics of $G$ have abelian unipotent radicals under this hypothesis.
+\begin{proof} (TODO) We can approximate $H$ with a sufficiently large finite subgroup, so assume without loss that $H$ is finite.  It's enough to study the simple components of $G$ separately, so without loss we assume $G$ is simple.  If $G$ is of type $B_2$ and $p\neq 2$ then we're done by Slodowy's paper, so without loss we assume that either $G$ is of type $A_n$, or $G$ is of type $B_2$ and $p= 2$.  Note that maximal parabolics of $G$ have abelian unipotent radicals under this hypothesis.
 
 We now use an inductive proof.  If $\rho$ is $G$-irreducible then we're done.  Otherwise put $\rho$ into a maximal parabolic $P$.  The key point is that we can transfer the problem from $P$ into a Levi of $P$ by the usual arguments, because the restriction map $H^1(H,V)\ra H^1(U,V)$ is injective for any finite $H$ if $V= R_u(P)$ is abelian.  (Here $U$ is a Sylow $p$-subgroup of $H$.)  By induction on ${\rm dim}(G)$, the result is true for $L$---for the simple components of $L$ are all of type $A_n$ or $B_2$---and we get what we want.
+\end{proof}
 
 This result shows that the $G_2$ counterexample to K's question for finite $H$ is in a sense the smallest possible: there is no such counterexample for any other $G$ of rank 1 or 2.]
 
