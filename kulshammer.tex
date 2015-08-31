@@ -178,7 +178,7 @@ Let $G$ and $H$ be linear algebraic groups over an algebraically closed field of
 \begin{qn}
 \label{qn:algKQ}
  %Suppose $G$ is reductive.
- Let $\sigma\colon U\ra G$ be a representation.  Are there only finitely many conjugacy classes of representation $\rho\colon H\ra G$ such that $\rho|_U$ is $G$-conjugate to $\sigma$?
+ Let $\sigma\colon U\ra G$ be a representation.  Are there only finitely many conjugacy classes of representations $\rho\colon H\ra G$ such that $\rho|_U$ is $G$-conjugate to $\sigma$?
 \end{qn}
 
 K\"ulshammer raised this question for finite $H$
@@ -504,6 +504,8 @@ for all $x, y \in K$. Denote by $Z^1\left( K, V \right)$ the collection of all 1
 We call $H^1(K, V)$ the \emph{1-cohomology}.
 \end{defn}
 
+Note that if $V$ is abelian then $Z^1(K, V)$ is a group under pointwise addition and $H^1(K, V) = Z^1(K, V) / B^1(K, V)$, where $B^1(K, V)$ is the subgroup of 1-cocycles of the form $\chi_v(x) = v \left(x^{-1}\cdot v\right)$ for some $v\in V$.
+
 \begin{lem}
   Suppose $K$ is linearly reductive and $V$ is unipotent. Then $H^1(K, V)$ is trivial. \cite[Lemma 6.2.6]{richardson1982orbits}.
   \label{lem:nonab_lin_red}
@@ -539,63 +541,62 @@ H^1(\zeta):H^1(\Gamma, V)\rightarrow H^1(\Gamma_p, V)
 is injective. \cite[III.10.4 Prop.]{brown1982cohomology}.
 \end{lem}
 
-\begin{ex} \label{ab_example} \textbf{TODO: replace $SL_2$ with $H$.}
-
-Let $k = \overline{\mathbb{F}_p} = \bigcup_{r\in \mathbb{N}} \mathbb{F}_{p^r}$.
-Let $V$ a be vector space over $k$ on which $SL_2(k)$ acts linearly, and let $U_2(k)$ be the subgroup of $SL_2(k)$ consisting of upper unitriangular matrices. Let $\zeta$ be the inclusion of $U_2(k)$ in $SL_2(k)$.
+\begin{ex} \label{ab_example} Let $k = \overline{\mathbb{F}}_p = \bigcup_{r\in \mathbb{N}} \mathbb{F}_{p^r}$.
+Let $V$ a be vector space over $k$ on which $H$ acts linearly, and let $U$ be a maximal unipotent subgroup of $H$. Let $\zeta$ be the inclusion of $U$ in $H$.
 
 Then the map
 	\begin{align}
-		H^1(\zeta): H^1(SL_2(k), V) \rightarrow H^1(U_2(k), V)
+		H^1(\zeta): H^1(H, V) \rightarrow H^1(U, V)
 	\end{align}
 	is injective.
 \label{eg:sl2ab}
 \end{ex}
 \begin{proof}
-	Let $r \in \mathbb{N}$ and denote the inclusion maps
+	For each $r \in \mathbb{N}$, consider the following maps between algebraic groups $H = H(k)$, $H(\mathbb{F}_{p^r})$, $U = U(k)$, and $U(\mathbb{F}_{p^r})$:
 \begin{align*}
-	\zeta_r&:U_2(\mathbb{F}_{p^r}) \hookrightarrow SL_2(\mathbb{F}_{p^r}), \\
-	\iota_r&:SL_2(\mathbb{F}_{p^r}) \hookrightarrow SL_2(k), \\
-	\iota'_r&:U_2(\mathbb{F}_{p^r}) \hookrightarrow U_2(k).
+	\zeta_r&:U(\mathbb{F}_{p^r}) \hookrightarrow H(\mathbb{F}_{p^r}), \\
+	\iota_r&:H(\mathbb{F}_{p^r}) \hookrightarrow H, \\
+	\iota'_r&:U(\mathbb{F}_{p^r}) \hookrightarrow U.
 \end{align*}
-By Lemma \ref{h1maps} %(Remark \ref{maps_functorial})
-we get the following commutative diagram,
+We have a family of commutative diagrams (Lemma \ref{h1maps}), with $H^1(\zeta_r)$ injective (Lemma \ref{brown}):
 \begin{align}\label{eqn:cd}
 	\xymatrix@C=40pt{
-		H^1(SL_2(k), V) \ar[r]^{H^1(\zeta)} \ar[d]_{H^1(\iota_r)} & H^1(U_2(k), V) \ar[d]^{H^1(\iota'_r)} \\
-		H^1(SL_2(\mathbb{F}_{p^r}), V)\, \ar[r]^{H^1(\zeta_r)} &\, H^1(U_2(\mathbb{F}_{p^r}), V).
+		H^1(H, V) \ar[r]^{H^1(\zeta)} \ar[d]_{H^1(\iota_r)} & H^1(U, V) \ar[d]^{H^1(\iota'_r)} \\
+		H^1(H(\mathbb{F}_{p^r}), V)\, \ar[r]^{H^1(\zeta_r)} &\, H^1(U(\mathbb{F}_{p^r}), V).
 	}
 \end{align}
 
-It is elementary to show that $U(\mathbb{F}_{p^r})$ is a Sylow $p$-subgroup of $SL_2(\mathbb{F}_{p^r})$, so by Lemma \ref{brown}, $H^1(\zeta_r)$ is injective for all $r \in \mathbb{N}$.
+Let $\sigma\in Z^1(H, V)$ such that $\sigma \notin B^1(H, V)$,
+%that is,
+%\begin{align}\label{betanob1}
+%	\sigma \neq \chi_v,
+%\end{align}
+%for any $v \in V$. 
+and for each $x\in H(\mathbb{F}_{p^r})$ define the morphism $f_x:V\rightarrow V$ by
+%\begin{align*}
+$f_x(v) = \sigma(x) (\chi_v(x))^{-1}$.
+%\end{align*}
+%Since $\mathbb{F}_{p^{r!}} \subset \mathbb{F}_{p^{(r+1)!}}$ we have $H(\mathbb{F}_{p^{r!}}) \subset H(\mathbb{F}_{p^{(r+1)!}})$.
 
-Let $\sigma\in Z^1(SL_2(k), V)$ such that $\sigma \notin B^1(SL_2(k), V)$, that is,
-\begin{align}\label{betanob1}
-	\sigma \neq \chi^{SL_2(k)}_v,
-\end{align}
-for any $v \in V$. For each $x\in SL_2(\mathbb{F}_{p^r})$ define the morphism $f_x:V\rightarrow V$ by
-	\begin{align*}
-		f_x(v) = \sigma(x) - \chi^{SL_2(k)}_v(x).
-	\end{align*}
-Since $\mathbb{F}_{p^{r!}} \subset \mathbb{F}_{p^{(r+1)!}}$ we have $SL_2(\mathbb{F}_{p^{r!}}) \subset SL_2(\mathbb{F}_{p^{(r+1)!}})$.
-Consider the sequence $\left\{C_{r}\right\}_{r \in \mathbb{N}}$ defined by
-	\begin{align*}
-		C_{r} = \{v \in V \,|\,\forall x\in SL_2(\mathbb{F}_{p^{r}}),\, f_x(v) = 0\}.
-	\end{align*}
-	Then
+Now consider the sequence $\left\{C_{r}\right\}_{r \in \mathbb{N}}$ defined by
+%\begin{align*}
+$C_{r} = \{v \in V \,|\,\forall x\in H(\mathbb{F}_{p^{r}}),\, f_x(v) = 0\}$.
+%\end{align*}
+By the choice of $\sigma$, the following set is empty:
 \begin{align*}
-	\bigcap_{r\in \mathbb{N}}C_{r!} &= \{v \in V \,|\, \forall x \in SL_2(k),\, f_x(v) = 0\} \\
-		&= \emptyset \quad(\textrm{Equation \ref{betanob1}}).
+	\bigcap_{r\in \mathbb{N}}C_{r!} &= \{v \in V \,|\, \forall x \in H,\, f_x(v) = 0\}
 \end{align*}
-	Each $C_{r}$ is closed, and the inclusion $SL_2(\mathbb{F}_{p^{r!}}) \subset SL_2(\mathbb{F}_{p^{(r+1)!}})$ induces the reverse inclusion for the subsequence $C_{r!} \supset C_{(r+1)!}$.
-Then the Noetherian property for $V$ requires that the subsequence $\left\{C_{r!}\right\}_{r \in \mathbb{N}}$ becomes constant, and since $\cap_{r\in\mathbb{N}}C_{r!} = \emptyset$, the subsequence $\left\{C_{r!}\right\}_{r \in \mathbb{N}}$ is eventually empty.
+Each $C_{r}$ is closed, and the inclusion $H(\mathbb{F}_{p^{r!}}) \subset H(\mathbb{F}_{p^{(r+1)!}})$ (since $\mathbb{F}_{p^{r!}} \subset \mathbb{F}_{p^{(r+1)!}}$) induces the reverse inclusion for the subsequence $C_{r!} \supset C_{(r+1)!}$.
+The Noetherian property for $V$ requires that the subsequence $\left\{C_{r!}\right\}_{r \in \mathbb{N}}$ becomes constant, and since $\cap_{r\in\mathbb{N}}C_{r!} = \emptyset$, this means the subsequence $\left\{C_{r!}\right\}_{r \in \mathbb{N}}$ is eventually empty.
 That is, there exists $s\in\mathbb{N}$ such that
-	\begin{align*}
-		Z^1(\iota_s)(\sigma) \neq \chi_v^{SL_2(\mathbb{F}_{p^{s}})},
-	\end{align*}
-	for any $v \in V$. We have shown that if $\sigma \in Z^1(SL_2(k), V)$ such that $Z^1(\iota_{r!})(\sigma) \in B^1(SL_2(\mathbb{F}_{p^{r!}}), V)$ for all $r \in \mathbb{N}$, then $\sigma \in B^1(SL_2(k), V)$.
+\begin{align*}
+	Z^1(\iota_s)(\sigma) \neq \chi_v,
+\end{align*}
+for any $v \in V$. 
 
-So, let $\sigma \in Z^1(SL_2(k), V)$ such that $\psi(\sigma) \in \mathrm{Ker}\left(H^1(\zeta)\right)$.
+We have shown that if $\sigma \in Z^1(H, V)$ such that $Z^1(\iota_{r!})(\sigma) \in B^1(H(\mathbb{F}_{p^{r!}}), V)$ for all $r \in \mathbb{N}$, then $\sigma \in B^1(H, V)$.
+
+So, let $\psi$ be the canonical projection $Z^1(H, V)\rightarrow H^1(H, V)$, and let $\sigma \in Z^1(H, V)$ such that $\psi(\sigma) \in \mathrm{Ker}\left(H^1(\zeta)\right)$.
 Then, consulting the commutative diagram in Equation \ref{eqn:cd},
 \begin{align*}
 	&\psi(\sigma) \in \mathrm{Ker}\left(H^1(\iota'_r) \circ H^1(\zeta)\right), \forall r \in \mathbb{N} \\
@@ -850,19 +851,24 @@ $H^1(K, V)_w/C_L(\omega)^\circ$
 is finite.
 \end{Rem}
 
-[We've proved Theorem~\ref{thm:main} for reductive $G$ (it's enough to take $G$ to be connected and semisimple, since $H$ is connected and semisimple).  I think the theorem follows for arbitrary non-reductive $G$ by taking the result for the special case of reductive groups and applying it to the reductive group $G/V$, then using David Stewart's result that the restriction map $H^1(B,V)\ra H^1(U,V)$ is injective.  Here $V= R_u(G)$ and $B$ is a Borel subgroup of $G$ with unipotent radical $U$.]
+%[We've proved Theorem~\ref{thm:main} for reductive $G$ (it's enough to take $G$ to be connected and semisimple, since $H$ is connected and semisimple).  I think the theorem follows for arbitrary non-reductive $G$ by taking the result for the special case of reductive groups and applying it to the reductive group $G/V$, then using David Stewart's result that the restriction map $H^1(B,V)\ra H^1(U,V)$ is injective.  Here $V= R_u(G)$ and $B$ is a Borel subgroup of $G$ with unipotent radical $U$.]
+%
+%[An application:
 
-[An application:
+In [ref] Bate, Martin, and R\"ohrle provide a finite subgroup $H$ of $G_2$
+%, $G$ a simple algebraic group of type $G_2$, 
+for which the answer to Question~\ref{qn:algKQ} is ``no''. We show that this is the smallest example possible, in the sense that there are no other such examples for any $G$ of rank 1 or 2.
 
-\begin{thm} Let $G$ be a reductive group such that the simple components of $G$ are all of type $A_n$ or $B_2$.  Then the answer to K's question is yes for any $H$ with $H^0$ semisimple.
+\begin{thm} Let $G$ be a reductive group such that the simple components of $G$ are all of type $A_n$ or $B_2$.  Then the answer to Question~\ref{qn:algKQ} is ``yes'' for any $H$ with $H^0$ semisimple.
 \end{thm}
 
-\begin{proof} (TODO) We can approximate $H$ with a sufficiently large finite subgroup, so assume without loss that $H$ is finite.  It's enough to study the simple components of $G$ separately, so without loss we assume $G$ is simple.  If $G$ is of type $B_2$ and $p\neq 2$ then we're done by Slodowy's paper, so without loss we assume that either $G$ is of type $A_n$, or $G$ is of type $B_2$ and $p= 2$.  Note that maximal parabolics of $G$ have abelian unipotent radicals under this hypothesis.
+\begin{proof} We can approximate $H$ with a sufficiently large finite subgroup, so assume without loss that $H$ is finite. 
+It's enough to study the simple components of $G$ separately, so without loss we assume $G$ is simple. If $G$ is of type $B_2$ and $p \neq 2$ then we're done by \cite{slodowy1997two}, so without loss we assume that either $G$ is of type $A_n$, or $G$ is of type $B_2$ and $p = 2$.  Note that maximal parabolics of $G$ have abelian unipotent radicals under this hypothesis.
 
-We now use an inductive proof.  If $\rho$ is $G$-irreducible then we're done.  Otherwise put $\rho$ into a maximal parabolic $P$.  The key point is that we can transfer the problem from $P$ into a Levi of $P$ by the usual arguments, because the restriction map $H^1(H,V)\ra H^1(U,V)$ is injective for any finite $H$ if $V= R_u(P)$ is abelian.  (Here $U$ is a Sylow $p$-subgroup of $H$.)  By induction on ${\rm dim}(G)$, the result is true for $L$---for the simple components of $L$ are all of type $A_n$ or $B_2$---and we get what we want.
+We now use an inductive proof. If $\rho$ is $G$-irreducible then we're done.  Otherwise put $\rho$ into a maximal parabolic $P$.  The key point is that we can transfer the problem from $P$ into a Levi of $P$ by the usual arguments, because the restriction map $H^1(H,V)\ra H^1(U,V)$ is injective for any finite $H$ if $V= R_u(P)$ is abelian.  (Here $U$ is a Sylow $p$-subgroup of $H$.)  By induction on ${\rm dim}(G)$, the result is true for $L$---for the simple components of $L$ are all of type $A_n$ or $B_2$---and we get what we want.
 \end{proof}
 
-This result shows that the $G_2$ counterexample to K's question for finite $H$ is in a sense the smallest possible: there is no such counterexample for any other $G$ of rank 1 or 2.]
+%This result shows that the $G_2$ counterexample to Question~\ref{qn:algKQ} for finite $H$ is in a sense the smallest possible: there is no such counterexample for any other $G$ of rank 1 or 2.
 
 %\begin{lem}
 % Let $\sigma\in {\rm Hom}(U,G)$.  Then $\sigma$ has irr K's property.
